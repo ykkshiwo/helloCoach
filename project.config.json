@@ -11,6 +11,8 @@
 	"appid": "wxec50e5ba2bd19d87",
 	"projectname": "helloCoach",
 	"libVersion": "2.2.5",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

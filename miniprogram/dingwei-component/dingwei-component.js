@@ -39,7 +39,11 @@ Component({
   },
 
   methods: {
-    userClickcomponent: function(e){
+    ccc: function() {
+      console.log("ccc");
+    },
+
+    userClickcomponent: function(e) {
       console.log("用户点击定位组件");
       this.setData({
         show: true,

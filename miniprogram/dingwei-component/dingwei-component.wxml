@@ -1,0 +1,6 @@
+  <dingwei-component>
+  <view class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}">{{myProperty}}</view>
+  <!-- <button bindtap='onMyButtonTap'>Button</button>
+  <view>{{A[0].B}}</view>
+  <button bindtap='_myPrivateMethod'>_myPrivateMethod</button> -->
+  </dingwei-component>

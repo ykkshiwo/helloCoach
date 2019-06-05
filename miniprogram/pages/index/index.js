@@ -1,13 +1,26 @@
 //index.js
 const app = getApp()
- 
+
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    compshow: false, //初始状态input不显示
+  },
+
+  hideAllcomponent: function() {
+    console.log("第一个发生反应");
+    this.setData({
+      compshow: false, //点击定位组件时父组件先将所有的定位组件的input关闭
+    });
+  },
+
+  userClickcomponentF: function(e) {
+    console.log("父组件被触发");
+    console.log(e.target.id);
   },
 
   onLoad: function() {
@@ -68,20 +81,20 @@ Page({
   },
 
   // 上传图片
-  doUpload: function () {
+  doUpload: function() {
     // 选择图片
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
 
         wx.showLoading({
           title: '上传中',
         })
 
         const filePath = res.tempFilePaths[0]
-        
+
         // 上传图片
         const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
@@ -93,7 +106,7 @@ Page({
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
-            
+
             wx.navigateTo({
               url: '../storageConsole/storageConsole'
             })

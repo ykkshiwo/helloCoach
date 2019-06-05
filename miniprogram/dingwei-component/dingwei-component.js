@@ -12,12 +12,14 @@ Component({
     thisTop: String,
     thisLeft: String,
     thisWidth: String,
-    thisHeight: String
+    thisHeight: String,
+    show: Boolean,
   },
   data: {
     A: [{
       B: 'init data.A[0].B'
-    }]
+    }],
+    show: false,
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {
@@ -37,6 +39,14 @@ Component({
   },
 
   methods: {
+    userClickcomponent: function(e){
+      console.log("用户点击定位组件");
+      this.setData({
+        show: true,
+      });
+      this.triggerEvent('userclickcomponent');
+    },
+
     onMyButtonTap: function() {
       this.setData({
         // 更新属性和数据的方法与更新页面数据的方法类似

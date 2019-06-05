@@ -1,4 +1,7 @@
 <dingwei-component>
-  <view class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}">{{myProperty}}</view>
+  <view bindtap='userClickcomponent' class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}">
+    始终显示</view>
+  <input wx:if="{{ show }}" class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}">
+  </input>
 
 </dingwei-component>

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" style='background-color:yellow'>
   
   <!-- 用户 openid -->
   <view class="userinfo">
@@ -13,6 +13,8 @@
       <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
     </view>
   </view>
+
+  <view>hello weixin</view>
 
 
   <!-- 上传图片 -->

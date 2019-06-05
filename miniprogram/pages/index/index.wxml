@@ -1,8 +1,12 @@
 <!--index.wxml-->
 <view class="container" style='background-color:yellow; height:100vh;'>
 
-  <dingwei-component my-property="examples" this-top="90rpx" this-left="180rpx" this-width="90rpx" this-height="60rpx"></dingwei-component>
-  
+  <dingwei-component my-property="examples" this-top="90rpx" this-left="180rpx" this-width="90rpx" this-height="75rpx"></dingwei-component>
+  <dingwei-component my-property="examples" this-top="180rpx" this-left="80rpx" this-width="90rpx" this-height="75rpx"></dingwei-component>
+  <dingwei-component my-property="examples" this-top="280rpx" this-left="280rpx" this-width="90rpx" this-height="500rpx"></dingwei-component>
+
+  <canvas>hello</canvas>
+
   <!-- 用户 openid 
   <view class="userinfo">
     <button 

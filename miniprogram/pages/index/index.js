@@ -8,13 +8,18 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    compshow: false, //初始状态input不显示
+    inputShow: false, //初始状态input不显示
+  },
+
+  ccc: function(e){
+    console.log("ccc");
+    console.log(e.detail);
   },
 
   hideAllcomponent: function() {
     console.log("首先最外层的捕获事件被触发");
     this.setData({
-      compshow: false, //点击定位组件时父组件先将所有的定位组件的input关闭
+      inputShow: false, //点击定位组件时父组件先将所有的定位组件的input关闭
     });
   },
 

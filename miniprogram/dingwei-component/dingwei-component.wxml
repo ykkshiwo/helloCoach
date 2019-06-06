@@ -1,7 +1,8 @@
 <dingwei-component bindtap='userClickcomponent'>
   <view class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}">
   </view>
-  <input wx:if="{{ show }}" class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}" bindblur='ccc' value='默认' focus="{{ inputFocus }}">
-  </input>
+  <!-- <input wx:if="{{ show }}" class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}" bindblur='ccc' value='默认' focus="{{ inputFocus }}">
+  </input> -->
+  <dingwei-component-input wx:if="{{ inputShow }}" bindneeddraw='drawOne' this-top1="{{ thisTop1 }}" this-left1="{{ thisLeft1 }}" this-height1="{{ thisHeight1 }}" this-width1="{{ thisWidth1 }}"></dingwei-component-input>
 
 </dingwei-component>

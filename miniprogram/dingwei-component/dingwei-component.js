@@ -15,8 +15,9 @@ Component({
     thisLeft: String,
     thisWidth: String,
     thisHeight: String,
-    show: {
+    inputShow: {
       type: Boolean,
+      value: false,
       observer: function(newVal, oldVal) {
         if (!newVal) {
           console.log("input失去焦点，隐藏");
@@ -30,15 +31,19 @@ Component({
     }
   },
   data: {
-    A: [{
-      B: 'init data.A[0].B'
-    }],
-    show: false,
+    inputShow: false,
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
-    attached: function() {},
+    attached: function() {
+      this.setData({
+        thisTop1: this.properties.thisTop,
+        thisLeft1: this.properties.thisLeft,
+        thisWidth1: this.properties.thisWidth,
+        thisHeight1: this.properties.thisHeight,
+      })
+    },
     moved: function() {},
     detached: function() {},
   },
@@ -53,20 +58,20 @@ Component({
   },
 
   methods: {
+    drawOne: function(){
+      console.log('失去焦点父组件被触发');
+    },
+
     willDraw: function() {
       app.globalData.a = 5698;
       console.log("绘制文字--定位组件");
       console.log(app.globalData.a);
     },
 
-    ccc: function() {
-      console.log("失去焦点");
-    },
-
     userClickcomponent: function(e) {
       console.log("用户点击定位组件");
       this.setData({
-        show: true,
+        inputShow: true,
       });
       var userInput = '用户输入的内容';
       this.triggerEvent('userclickcomponent', userInput);

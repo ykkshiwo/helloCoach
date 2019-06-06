@@ -1,0 +1,4 @@
+.dingwei {
+  background-color: rgba(104, 89, 180, 0.6);
+  border: 1rpx solid black;
+}

@@ -10,6 +10,6 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {a: 123}
   }
 })

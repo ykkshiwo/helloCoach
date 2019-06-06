@@ -1,3 +1,5 @@
+var app = getApp();
+
 Component({
 
   behaviors: [],
@@ -13,7 +15,19 @@ Component({
     thisLeft: String,
     thisWidth: String,
     thisHeight: String,
-    show: Boolean,
+    show: {
+      type: Boolean,
+      observer: function(newVal, oldVal) {
+        if (!newVal) {
+          console.log("input失去焦点，隐藏");
+          this.willDraw();
+        }
+      }
+    },
+    inputFocus: {
+      type: Boolean,
+      value: true,
+    }
   },
   data: {
     A: [{
@@ -39,6 +53,12 @@ Component({
   },
 
   methods: {
+    willDraw: function() {
+      app.globalData.a = 5698;
+      console.log("绘制文字--定位组件");
+      console.log(app.globalData.a);
+    },
+
     ccc: function() {
       console.log("ccc");
     },
@@ -48,7 +68,8 @@ Component({
       this.setData({
         show: true,
       });
-      this.triggerEvent('userclickcomponent');
+      var userInput = '用户输入的内容';
+      this.triggerEvent('userclickcomponent', userInput);
     },
 
     onMyButtonTap: function() {
@@ -61,9 +82,6 @@ Component({
       // 内部方法建议以下划线开头
       this.replaceDataOnPath(['A', 0, 'B'], 'myPrivateData') // 这里将 data.A[0].B 设为 'myPrivateData'
       this.applyDataUpdates()
-    },
-    _propertyChange: function(newVal, oldVal) {
-
     }
   }
 

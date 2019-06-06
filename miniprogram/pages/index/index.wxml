@@ -4,8 +4,10 @@
   <dingwei-component id='1' binduserclickcomponent="userClickcomponentF" my-property="examples" this-top="90rpx" this-left="180rpx" this-width="90rpx" this-height="75rpx" show="{{ compshow }}"></dingwei-component>
   <dingwei-component id='2' binduserclickcomponent="userClickcomponentF" my-property="examples" this-top="180rpx" this-left="80rpx" this-width="90rpx" this-height="75rpx" show="{{ compshow }}"></dingwei-component>
   <dingwei-component id='3' binduserclickcomponent="userClickcomponentF" my-property="examples" this-top="280rpx" this-left="280rpx" this-width="90rpx" this-height="500rpx" show="{{ compshow }}"></dingwei-component>
+    <dingwei-component id='4' binduserclickcomponent="userClickcomponentF" my-property="examples" this-top="380rpx" this-left="380rpx" this-width="90rpx" this-height="50rpx" show="{{ compshow }}"></dingwei-component>
 
   <view wx:if="{{ false }}"> WEBVIEW </view>
+  <view id='7'>hello</view>
 
   <!-- 用户 openid 
   <view class="userinfo">

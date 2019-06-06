@@ -12,7 +12,7 @@ Page({
   },
 
   hideAllcomponent: function() {
-    console.log("第一个发生反应");
+    console.log("首先最外层的捕获事件被触发");
     this.setData({
       compshow: false, //点击定位组件时父组件先将所有的定位组件的input关闭
     });
@@ -21,6 +21,7 @@ Page({
   userClickcomponentF: function(e) {
     console.log("父组件被触发");
     console.log(e.target.id);
+    console.log(e.detail);
   },
 
   onLoad: function() {

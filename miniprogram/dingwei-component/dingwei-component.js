@@ -60,7 +60,7 @@ Component({
     },
 
     ccc: function() {
-      console.log("ccc");
+      console.log("失去焦点");
     },
 
     userClickcomponent: function(e) {

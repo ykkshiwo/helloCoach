@@ -1,5 +1,3 @@
-var app = getApp();
-
 Component({
 
   behaviors: [],
@@ -21,7 +19,6 @@ Component({
       observer: function(newVal, oldVal) {
         if (!newVal) {
           console.log("input失去焦点，隐藏");
-          this.willDraw();
         }
       }
     },
@@ -31,7 +28,7 @@ Component({
     }
   },
   data: {
-    inputShow: false,
+    // inputShow: false,
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {
@@ -60,12 +57,13 @@ Component({
   methods: {
     drawOne: function(){
       console.log('失去焦点父组件被触发');
+      // this.setData({
+      //   inputShow: false
+      // })
     },
 
     willDraw: function() {
-      app.globalData.a = 5698;
       console.log("绘制文字--定位组件");
-      console.log(app.globalData.a);
     },
 
     userClickcomponent: function(e) {

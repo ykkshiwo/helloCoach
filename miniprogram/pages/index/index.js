@@ -11,9 +11,20 @@ Page({
     inputShow: false, //初始状态input不显示
   },
 
-  ccc: function(e){
+  ccc: function(e) {
+    this.hideAllcomponent();
     console.log("ccc");
     console.log(e.detail);
+    var d = e.detail;
+    console.log(d.inputValue, d.top, d.left);
+
+    var ctx = wx.createCanvasContext('canvas')
+
+    ctx.setFontSize(25)
+    ctx.setTextBaseline('top')
+    ctx.fillText(d.inputValue, d.left.slice(0,-3)/2, d.top.slice(0,-3)/2)
+
+    ctx.draw()
   },
 
   hideAllcomponent: function() {

@@ -1,5 +1,3 @@
-var app = getApp();
-
 Component({
 
   behaviors: [],
@@ -49,7 +47,13 @@ Component({
 
     loseFocus: function() {
       console.log("用户输入完成，现在开始绘制");
-      this.triggerEvent('needdraw', this.data.inputValue, {
+      this.triggerEvent('needdraw', {
+        height: this.properties.thisHeight1,
+        width: this.properties.thisWidth1,
+        top: this.properties.thisTop1,
+        left: this.properties.thisLeft1,
+        inputValue: this.data.inputValue
+      }, {
         bubbles: true,
         composed: true
       });

@@ -1,6 +1,9 @@
 .dingwei {
   background-color: rgba(104, 89, 180, 0.6);
-  border: 2rpx solid black;
+  /* border: 2rpx solid black; */
   padding: 0px;
-  opacity: 0;
+  opacity: 0.5;
+  white-space: nowrap;
+  box-sizing: content-box;
+  padding-top: 0px;
 }

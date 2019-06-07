@@ -9,22 +9,24 @@ Page({
     takeSession: false,
     requestResult: '',
     inputShow: false, //初始状态input不显示
+    picArray: [],
+    textArray: []
+  },
+
+  startDraw: function() {
+    var pic = this.data.picArray;
+    var ctx = wx.createCanvasContext('canvas');
+
+    ctx.drawImage(pic[0].picPath[0], 0, 0, pic[0].sInfo.sWidth, pic[0].sInfo.sHeight, 40, 40, 300, 180);
+    ctx.draw();
+
   },
 
   ccc: function(e) {
+    console.log("从input组件回调回来");
+    console.log(e.detail, "写入文字数组");
+    this.data.textArray.push(e.detail);
     this.hideAllcomponent();
-    console.log("ccc");
-    console.log(e.detail);
-    var d = e.detail;
-    console.log(d.inputValue, d.top, d.left);
-
-    var ctx = wx.createCanvasContext('canvas')
-
-    ctx.setFontSize(25)
-    ctx.setTextBaseline('top')
-    ctx.fillText(d.inputValue, d.left.slice(0,-3)/2, d.top.slice(0,-3)/2)
-
-    ctx.draw()
   },
 
   hideAllcomponent: function() {
@@ -37,7 +39,9 @@ Page({
   userClickcomponentF: function(e) {
     console.log("父组件被触发");
     console.log(e.target.id);
-    console.log(e.detail);
+    console.log(e.detail, "写入图片数组");
+    this.data.picArray.push(e.detail);
+    console.log("最新的图片数组：", this.data.picArray);
   },
 
   onLoad: function() {
@@ -64,6 +68,8 @@ Page({
         }
       }
     })
+
+    console.log(app.globalData.rpxTopx);
   },
 
   onGetUserInfo: function(e) {

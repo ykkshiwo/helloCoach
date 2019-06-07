@@ -10,6 +10,13 @@ App({
       })
     }
 
-    this.globalData = {a: 123}
+    const res = wx.getSystemInfoSync();
+    console.log(res.windowWidth);
+    var rpxTopx = res.windowWidth/750;
+    this.globalData.rpxTopx = rpxTopx;
+  },
+
+  globalData: {
+    rpxTopx: 0.5,
   }
 })

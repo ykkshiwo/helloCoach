@@ -1,12 +1,17 @@
 <!--index.wxml-->
 <view class="container" style='height:100vh;' capture-bind:tap='hideAllcomponent'>
+
   <canvas canvas-id="canvas" class="canvas"></canvas>
 
-  <dingwei-component id='1' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="90rpx" this-left="180rpx" this-width="50px" this-height="25px" input-show="{{ inputShow }}"></dingwei-component>
-  <!-- <dingwei-component id='2' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="180rpx" this-left="80rpx" this-width="90rpx" this-height="75rpx" input-show="{{ inputShow }}"></dingwei-component>
-  <dingwei-component id='3' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="280rpx" this-left="280rpx" this-width="90rpx" this-height="500rpx" input-show="{{ inputShow }}"></dingwei-component>
-  <dingwei-component id='4' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="380rpx" this-left="380rpx" this-width="90rpx" this-height="50rpx" input-show="{{ inputShow }}"></dingwei-component>
+  <dingwei-component id='1' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src= "/images/code-db-inc-dec.png"></dingwei-component>
+    <!-- <dingwei-component id='6' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="500rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src= "/images/code-db-onQuery.png"></dingwei-component> -->
+  <!-- <!-- <dingwei-component id='2' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="180rpx" this-left="80rpx" this-width="90rpx" this-height="75rpx" input-show="{{ inputShow }}"></dingwei-component> -->
+  <dingwei-component id='1' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="800rpx" this-left="80rpx" this-width="60rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
+  <!-- <dingwei-component id='4' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="380rpx" this-left="380rpx" this-width="90rpx" this-height="50rpx" input-show="{{ inputShow }}"></dingwei-component>
   <dingwei-component id='5' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="30rpx" this-left="480rpx" this-width="90rpx" this-height="50rpx" input-show="{{ inputShow }}"></dingwei-component> -->
+
+
+<!-- <button bindtap='startDraw'>绘制</button> -->
 
   <!-- 用户 openid 
   <view class="userinfo">

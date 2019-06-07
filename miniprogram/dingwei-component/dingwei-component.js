@@ -13,6 +13,9 @@ Component({
     thisLeft: String,
     thisWidth: String,
     thisHeight: String,
+    valueText: String,
+    isText: Boolean,
+    imageSrc: String,
     inputShow: {
       type: Boolean,
       value: false,
@@ -55,11 +58,13 @@ Component({
   },
 
   methods: {
-    drawOne: function(){
+
+    drawOne: function(e) {
       console.log('失去焦点父组件被触发');
-      // this.setData({
-      //   inputShow: false
-      // })
+      this.setData({
+        valueText: e.detail.inputValue,
+        // inputShow: false,
+      })
     },
 
     willDraw: function() {
@@ -67,12 +72,39 @@ Component({
     },
 
     userClickcomponent: function(e) {
-      console.log("用户点击定位组件");
-      this.setData({
-        inputShow: true,
-      });
-      var userInput = '用户输入的内容';
-      this.triggerEvent('userclickcomponent', userInput);
+      if (this.properties.isText) {
+        console.log("用户点击定位组件(文字)");
+        this.setData({
+          inputShow: true,
+        });
+      } else {
+        const that = this;
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success(res) {
+            const tempFilePaths = res.tempFilePaths;
+            that.setData({
+              imageSrc: tempFilePaths,
+            })
+            wx.getImageInfo({
+              src: res.tempFilePaths[0],
+              success(res) {
+                const sInfo_ = {
+                  sWidth: res.width,
+                  sHeight: res.height
+                };
+                that.triggerEvent('userclickcomponent', {
+                  picPath: tempFilePaths,
+                  sInfo: sInfo_,
+                  locatInfo: that.data
+                });
+              }
+            })
+          }
+        })
+      }
     },
 
     onMyButtonTap: function() {

@@ -11,12 +11,16 @@ App({
     }
 
     const res = wx.getSystemInfoSync();
-    console.log(res.windowWidth);
+    console.log(res);
     var rpxTopx = res.windowWidth/750;
     this.globalData.rpxTopx = rpxTopx;
+    this.globalData.screenHeightPx = res.windowHeight;
+    this.globalData.screenWidthPx = res.windowWidth;
   },
 
   globalData: {
     rpxTopx: 0.5,
+    screenWidthPx: '',
+    screenHeightPx: '',
   }
 })

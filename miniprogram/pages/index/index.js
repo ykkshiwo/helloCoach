@@ -1,5 +1,7 @@
 //index.js
 const app = getApp()
+const rpxTopx = app.globalData.rpxTopx
+console.log("index页面：", rpxTopx)
 
 Page({
   data: {
@@ -10,16 +12,86 @@ Page({
     requestResult: '',
     inputShow: false, //初始状态input不显示
     picArray: [],
-    textArray: []
+    textArray: [],
+    hide: true,
+    canvasHeight: '',
+    canvasShow: true,
   },
 
+  hideComponent: function() {
+    this.setData({
+      hide: !this.data.hide,
+    })
+  },
+
+  drawPictures: function(picArray, ctx) {
+    console.log("开始绘制图片");
+    for (var i = 0; i < picArray.length; i++) {
+      var pic = picArray[i]
+      console.log(pic.locatInfo);
+      ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
+    }
+    return ctx;
+  },
+
+  drawText: function(textArray, ctx) {
+    console.log("开始绘制文字");
+    for (var i = 0; i < textArray.length; i++) {
+      var text = textArray[i]
+      console.log(text);
+      ctx.setFontSize(text.height.slice(0, -3) * rpxTopx);
+      ctx.setTextAlign('left');
+      ctx.setTextBaseline('top');
+      ctx.fillText(text.inputValue, text.left.slice(0, -3) * rpxTopx, text.top.slice(0, -3) * rpxTopx);
+    }
+    return ctx;
+  },
+
+
+
   startDraw: function() {
-    var pic = this.data.picArray;
+    wx.showLoading({
+      title: '绘制中',
+    })
+
     var ctx = wx.createCanvasContext('canvas');
+    var ctxPic = this.drawPictures(this.data.picArray, ctx);
+    var ctxPicText = this.drawText(this.data.textArray, ctxPic);
 
-    ctx.drawImage(pic[0].picPath[0], 0, 0, pic[0].sInfo.sWidth, pic[0].sInfo.sHeight, 40, 40, 300, 180);
-    ctx.draw();
+    const that = this;
+    ctxPicText.draw(false,function(){
+      console.log("绘制成功");
+      wx.hideLoading();
+      that.savePicture();
+    });
+    
+  },
 
+  savePicture: function() {
+    const that = this;
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: app.globalData.screenWidthPx,
+      height: app.globalData.screenHeightPx,
+      // destWidth: 100,
+      // destHeight: 100,
+      canvasId: 'canvas',
+      fileType: 'jpg',
+      quality: 1,
+      success(res) {
+        console.log(res.tempFilePath);
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res) {
+            console.log(res);
+            that.setData({
+              canvasShow: false,
+            })
+          }
+        })
+      }
+    })
   },
 
   ccc: function(e) {
@@ -42,6 +114,12 @@ Page({
     console.log(e.detail, "写入图片数组");
     this.data.picArray.push(e.detail);
     console.log("最新的图片数组：", this.data.picArray);
+  },
+
+  onReady: function() {
+    this.setData({
+      canvasHeight: app.globalData.screenHeightPx / rpxTopx
+    })
   },
 
   onLoad: function() {

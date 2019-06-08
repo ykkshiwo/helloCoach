@@ -39,6 +39,12 @@ Component({
 
   methods: {
 
+    bindInitial: function(e) {
+      this.setData({
+        inputValue: e.detail.value
+      })
+    },
+
     bindKeyInput: function(e) {
       this.setData({
         inputValue: e.detail.value

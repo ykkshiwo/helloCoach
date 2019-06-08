@@ -187,6 +187,28 @@ Page({
   },
 
   onLoad: function() {
+
+    // wx.showActionSheet({
+    //   itemList: ['本地相册', '网络素材'],
+    //   success(res) {
+    //     console.log(res.tapIndex)
+    //   },
+    //   fail(res) {
+    //     console.log(res.errMsg)
+    //   }
+    // })
+
+    wx.cloud.getTempFileURL({
+      fileList: ['cloud://hello-coach-1-3d05cc.6865-hello-coach-1-3d05cc-1259373909/my-image.jpg'],
+      success: res => {
+        // get temp file URL
+        console.log(res.fileList)
+      },
+      fail: err => {
+        // handle error
+      }
+    })
+
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',

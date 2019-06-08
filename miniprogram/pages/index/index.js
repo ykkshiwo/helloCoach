@@ -3,6 +3,7 @@ const app = getApp()
 const rpxTopx = app.globalData.rpxTopx
 console.log("index页面：", rpxTopx)
 
+
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
@@ -16,7 +17,9 @@ Page({
     hide: true,
     canvasHeight: '',
     canvasShow: true,
-    canvasLeft: "750rpx"
+    canvasLeft: "750rpx",
+    backgroundPic: "/images/b19a.jpg",
+    backgroundPicInfo: ''
   },
 
   hideComponent: function() {
@@ -46,7 +49,27 @@ Page({
     }
   },
 
-
+  changeBackground: function() {
+    const that = this;
+    wx.chooseImage({
+      success: function(res) {
+        that.setData({
+          backgroundPic: res.tempFilePaths[0],
+        });
+        wx.getImageInfo({
+          src: res.tempFilePaths[0],
+          success: function(res) {
+            that.setData({
+              backgroundPicInfo: {
+                sWidth: res.width,
+                sHeight: res.height,
+              }
+            })
+          }
+        })
+      },
+    })
+  },
 
   startDraw: function() {
     wx.showLoading({
@@ -55,9 +78,11 @@ Page({
 
     var ctx = wx.createCanvasContext('canvas');
     // var ctx = wx.createOffscreenCanvas('canvas');
-    ctx.rect(0, 0, app.globalData.screenWidthPx, app.globalData.screenHeightPx);
+    // ctx.rect(0, 0, app.globalData.screenWidthPx, app.globalData.screenHeightPx);
     // ctx.setFillStyle('white');
     // ctx.fill();
+    ctx.drawImage(this.data.backgroundPic, 0, 0, this.data.backgroundPicInfo.sWidth, this.data.backgroundPicInfo.sHeight, 0, 0, app.globalData.screenWidthPx, app.globalData.screenHeightPx);
+
     this.drawPictures(this.data.picArray, ctx);
     this.drawText(this.data.textArray, ctx);
 

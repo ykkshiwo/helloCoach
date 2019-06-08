@@ -4,6 +4,9 @@
   <view wx:if="{{ canvasShow }}">
     <canvas canvas-id="canvas" class="canvas" style="position:fixed;top:0;left:800rpx; height: {{ canvasHeight }};width:750rpx;"></canvas>
   </view>
+
+  <image style="position: fixed; top:0; left0; width: 750rpx; height: 100vh" mode="scaleToFill" src="{{ backgroundPic }}" />
+
   <dingwei-component wx:if="{{ hide }}" id='1' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
     image-src="/images/code-db-inc-dec.png"></dingwei-component>
 
@@ -20,6 +23,7 @@
 
   <view style="position: fixed; top: 350rpx; left: 12rpx;">
     <button bindtap='startDraw'>绘制保存</button>
+    <button bindtap='changeBackground'>背景图片</button>
   </view>
 
   <!-- 用户 openid 

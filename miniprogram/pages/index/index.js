@@ -16,6 +16,7 @@ Page({
     hide: true,
     canvasHeight: '',
     canvasShow: true,
+    canvasLeft: "750rpx"
   },
 
   hideComponent: function() {
@@ -27,24 +28,22 @@ Page({
   drawPictures: function(picArray, ctx) {
     console.log("开始绘制图片");
     for (var i = 0; i < picArray.length; i++) {
-      var pic = picArray[i]
+      var pic = picArray[i].data
       console.log(pic.locatInfo);
       ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
     }
-    return ctx;
   },
 
   drawText: function(textArray, ctx) {
     console.log("开始绘制文字");
     for (var i = 0; i < textArray.length; i++) {
-      var text = textArray[i]
+      var text = textArray[i].data;
       console.log(text);
       ctx.setFontSize(text.height.slice(0, -3) * rpxTopx);
       ctx.setTextAlign('left');
       ctx.setTextBaseline('top');
       ctx.fillText(text.inputValue, text.left.slice(0, -3) * rpxTopx, text.top.slice(0, -3) * rpxTopx);
     }
-    return ctx;
   },
 
 
@@ -55,16 +54,20 @@ Page({
     })
 
     var ctx = wx.createCanvasContext('canvas');
-    var ctxPic = this.drawPictures(this.data.picArray, ctx);
-    var ctxPicText = this.drawText(this.data.textArray, ctxPic);
+    // var ctx = wx.createOffscreenCanvas('canvas');
+    ctx.rect(0, 0, app.globalData.screenWidthPx, app.globalData.screenHeightPx);
+    // ctx.setFillStyle('white');
+    // ctx.fill();
+    this.drawPictures(this.data.picArray, ctx);
+    this.drawText(this.data.textArray, ctx);
 
     const that = this;
-    ctxPicText.draw(false,function(){
+    ctx.draw(false, function() {
       console.log("绘制成功");
       wx.hideLoading();
       that.savePicture();
     });
-    
+
   },
 
   savePicture: function() {
@@ -74,8 +77,6 @@ Page({
       y: 0,
       width: app.globalData.screenWidthPx,
       height: app.globalData.screenHeightPx,
-      // destWidth: 100,
-      // destHeight: 100,
       canvasId: 'canvas',
       fileType: 'jpg',
       quality: 1,
@@ -85,19 +86,48 @@ Page({
           filePath: res.tempFilePath,
           success(res) {
             console.log(res);
-            that.setData({
-              canvasShow: false,
-            })
+            // that.setData({
+            //   canvasLeft: "1600rpx"
+            // })
           }
         })
       }
     })
   },
 
+  checkRepeat: function(arrayOld, newData, id) {
+    if (arrayOld.length == 0) {
+      return true;
+    } else {
+      for (var i = 0; i < arrayOld.length; i++) {
+        console.log(arrayOld[i].id_ == id)
+        if (arrayOld[i].id_ == id) {
+          arrayOld[i] = {
+            id_: id,
+            data: newData
+          };
+          return false;
+        }
+      }
+      return true;
+    }
+  },
+
   ccc: function(e) {
     console.log("从input组件回调回来");
+    console.log(typeof e.target.id);
     console.log(e.detail, "写入文字数组");
-    this.data.textArray.push(e.detail);
+    var cr = this.checkRepeat(this.data.textArray, e.detail, e.target.id);
+    if (cr) {
+      console.log("文字数组中没有重复。");
+      this.data.textArray.push({
+        id_: e.target.id,
+        data: e.detail
+      });
+    } else {
+      console.log("文字数组中有重复，已经替换");
+    }
+    console.log("最新的文字数组：", this.data.textArray);
     this.hideAllcomponent();
   },
 
@@ -112,7 +142,16 @@ Page({
     console.log("父组件被触发");
     console.log(e.target.id);
     console.log(e.detail, "写入图片数组");
-    this.data.picArray.push(e.detail);
+    var cr = this.checkRepeat(this.data.picArray, e.detail, e.target.id);
+    if (cr) {
+      console.log("图片数组中没有重复。");
+      this.data.picArray.push({
+        id_: e.target.id,
+        data: e.detail
+      });
+    } else {
+      console.log("图片数组中有重复，已经替换");
+    }
     console.log("最新的图片数组：", this.data.picArray);
   },
 

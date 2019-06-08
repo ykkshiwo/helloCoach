@@ -32,6 +32,7 @@ Component({
   },
   data: {
     // inputShow: false,
+    firstAttach: true,
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {
@@ -42,7 +43,8 @@ Component({
         thisLeft1: this.properties.thisLeft,
         thisWidth1: this.properties.thisWidth,
         thisHeight1: this.properties.thisHeight,
-      })
+      });
+      this.userClickcomponent();
     },
     moved: function() {},
     detached: function() {},
@@ -72,38 +74,75 @@ Component({
     },
 
     userClickcomponent: function(e) {
-      if (this.properties.isText) {
-        console.log("用户点击定位组件(文字)");
+      const that = this;
+      if (this.data.firstAttach) {
+        console.log("第一次加载");
+        if (this.properties.isText) {
+          this.setData({
+            inputShow: false,
+          });
+          this.triggerEvent('needdraw', {
+            height: this.properties.thisHeight,
+            width: this.properties.thisWidth,
+            top: this.properties.thisTop,
+            left: this.properties.thisLeft,
+            inputValue: this.properties.valueText
+          });
+        } else {
+          console.log("这是图片定位组件");
+          console.log("初始值存在，写入初始值");
+          wx.getImageInfo({
+            src: that.properties.imageSrc,
+            success(res) {
+              const sInfo_ = {
+                sWidth: res.width,
+                sHeight: res.height
+              };
+              that.triggerEvent('userclickcomponent', {
+                picPath: [that.properties.imageSrc],
+                sInfo: sInfo_,
+                locatInfo: that.data
+              });
+            }
+          })
+        }
         this.setData({
-          inputShow: true,
-        });
-      } else {
-        const that = this;
-        wx.chooseImage({
-          count: 1,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera'],
-          success(res) {
-            const tempFilePaths = res.tempFilePaths;
-            that.setData({
-              imageSrc: tempFilePaths,
-            })
-            wx.getImageInfo({
-              src: res.tempFilePaths[0],
-              success(res) {
-                const sInfo_ = {
-                  sWidth: res.width,
-                  sHeight: res.height
-                };
-                that.triggerEvent('userclickcomponent', {
-                  picPath: tempFilePaths,
-                  sInfo: sInfo_,
-                  locatInfo: that.data
-                });
-              }
-            })
-          }
+          firstAttach: false,
         })
+      } else {
+        console.log("不是第一次加载");
+        if (this.properties.isText) {
+          this.setData({
+            inputShow: true,
+          });
+        } else {
+          console.log("用户自己来选择");
+          wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success(res) {
+              const tempFilePaths = res.tempFilePaths;
+              that.setData({
+                imageSrc: tempFilePaths,
+              })
+              wx.getImageInfo({
+                src: res.tempFilePaths[0],
+                success(res) {
+                  const sInfo_ = {
+                    sWidth: res.width,
+                    sHeight: res.height
+                  };
+                  that.triggerEvent('userclickcomponent', {
+                    picPath: tempFilePaths,
+                    sInfo: sInfo_,
+                    locatInfo: that.data
+                  });
+                }
+              })
+            }
+          })
+        }
       }
     },
 

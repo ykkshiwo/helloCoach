@@ -13,6 +13,7 @@ Component({
     thisLeft1: String,
     thisWidth1: String,
     thisHeight1: String,
+    thisInput: String,
     show: Boolean,
   },
   data: {

@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    "pages/webImages/webImages",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

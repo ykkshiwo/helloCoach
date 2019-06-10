@@ -9,12 +9,7 @@ Component({
       observer: function (newVal, oldVal) { } // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
     },
     myProperty2: String, // 简化的定义方式
-    thisTop1: String,
-    thisLeft1: String,
-    thisWidth1: String,
-    thisHeight1: String,
-    thisInput: String,
-    show: Boolean,
+    imageUrl: String,
   },
   data: {
     inputValue: '',

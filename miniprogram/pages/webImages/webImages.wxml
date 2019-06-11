@@ -1,8 +1,8 @@
 <!--miniprogram/pages/webImages/webImages.wxml-->
 <view class='top'>
-  <view class='top1' style="border-bottom-width: 2px; font-weight: bold;">背景图片</view>
-  <view class='top1'>课程图片</view>
-  <view class='top1'>其他图片</view>
+  <view id="背景图片" class='top1' style="border-bottom-width: {{ borderBottomWidthbg }}; font-weight: {{ fontWeightbg }};" bindtap='clickChangeImagesPage'>背景图片</view>
+  <view id="课程图片" class='top1' style="border-bottom-width: {{ borderBottomWidthkc }}; font-weight: {{ fontWeightkc }};" bindtap='clickChangeImagesPage'>课程图片</view>
+  <view id="其他图片" class='top1' style="border-bottom-width: {{ borderBottomWidthqt }}; font-weight: {{ fontWeightqt }};" bindtap='clickChangeImagesPage'>其他图片</view>
 </view>
 
 <scroll-view scroll-y="{{ true }}" style="background-color: rgba(255,192,228, 0.2);border-top: 1px solid rgba(255,192,228, 0.5)">

@@ -6,7 +6,12 @@ Page({
    */
   data: {
     webImagesUrl: [],
-    testUrls: ["https://6865-hello-coach-1-3d05cc-1259373909.tcb.qcloud.la/my-image.jpg", "https://6865-hello-coach-1-3d05cc-1259373909.tcb.qcloud.la/my-image.jpg"]
+    borderBottomWidthbg: '',
+    borderBottomWidthkc: '',
+    borderBottomWidthqt: '',
+    fontWeightbg: '',
+    fontWeightkc: '',
+    fontWeightqt: '',
   },
 
   /**
@@ -19,31 +24,14 @@ Page({
     });
     console.log("数据库启动 3")
     const backgroundCollection = helloCoachDB.collection('background-images');
+    const courseCollection = helloCoachDB.collection('course-images');
+    const otherCollection = helloCoachDB.collection('other-images');
     console.log("数据库启动 4")
-
-    const that = this;
-    backgroundCollection.where({}).get({
-      success: function(res) {
-        console.log("获取的所有数据为：", res.data);
-        var webUrlsArray = that.databaseResult_WebUrlsArray(res.data);
-        console.log("云文件IDs：", webUrlsArray);
-        wx.cloud.getTempFileURL({
-          fileList: webUrlsArray,
-          success: res => {
-            // get temp file URL
-            console.log("返回的文件临时链接：",res.fileList);
-            that.setData({
-              webImagesUrl: res.fileList
-            });
-          },
-          fail: err => {
-            // handle error
-          }
-        })
-      }
+    this.setData({
+      backgroundCollection: backgroundCollection,
+      courseCollection: courseCollection,
+      otherCollection: otherCollection
     });
-
-
 
   },
 
@@ -102,5 +90,75 @@ Page({
       webUrlsArray.push(databaseResult[i].fileId);
     };
     return webUrlsArray;
+  },
+
+  changeImagesPage: function(Collection, that) {
+    Collection.where({}).get({
+      success: function(res) {
+        console.log("获取的所有数据为：", res.data);
+        var webUrlsArray = that.databaseResult_WebUrlsArray(res.data);
+        console.log("云文件IDs：", webUrlsArray);
+        wx.cloud.getTempFileURL({
+          fileList: webUrlsArray,
+          success: res => {
+            // get temp file URL
+            console.log("返回的文件临时链接：", res.fileList);
+            that.setData({
+              webImagesUrl: res.fileList
+            });
+          },
+          fail: err => {
+            // handle error
+          }
+        })
+      }
+    });
+  },
+
+  clickChangeImagesPage: function(e) {
+    console.log(e);
+    var targetId = e.target.id;
+    const that = this;
+    switch (targetId) {
+      case "背景图片":
+        console.log("点击背景图片");
+        this.setData({
+          borderBottomWidthbg: '2px',
+          borderBottomWidthkc: '',
+          borderBottomWidthqt: '',
+          fontWeightbg: 'bold',
+          fontWeightkc: '',
+          fontWeightqt: '',
+        })
+        this.changeImagesPage(this.data.backgroundCollection, that);
+        break;
+      case "课程图片":
+        console.log("点击课程图片");
+        this.setData({
+          borderBottomWidthbg: '',
+          borderBottomWidthkc: '2px',
+          borderBottomWidthqt: '',
+          fontWeightbg: '',
+          fontWeightkc: 'bold',
+          fontWeightqt: '',
+        })
+        this.changeImagesPage(this.data.courseCollection, that);
+        break;
+      case "其他图片":
+        console.log("点击其他图片");
+        this.setData({
+          borderBottomWidthbg: '',
+          borderBottomWidthkc: '',
+          borderBottomWidthqt: '2px',
+          fontWeightbg: '',
+          fontWeightkc: '',
+          fontWeightqt: 'bold',
+        })
+        this.changeImagesPage(this.data.otherCollection, that);
+        break;
+      default:
+        break;
+    }
   }
+
 })

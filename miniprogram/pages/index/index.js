@@ -186,28 +186,28 @@ Page({
     })
   },
 
-  onLoad: function() {
+  onLoad: function(option) {
 
-    // wx.showActionSheet({
-    //   itemList: ['本地相册', '网络素材'],
-    //   success(res) {
-    //     console.log(res.tapIndex)
+    if (option.imageUrl){
+      console.log(option);
+      this.setData({
+        backgroundPic: option.imageUrl
+      })
+    }
+    var info = JSON.stringify({ a: 123 });
+    console.log(info);
+    // console.log("输出传递回来的图片链接：", option.imageUrl);
+
+    // wx.cloud.getTempFileURL({
+    //   fileList: ['cloud://hello-coach-1-3d05cc.6865-hello-coach-1-3d05cc-1259373909/my-image.jpg'],
+    //   success: res => {
+    //     // get temp file URL
+    //     console.log(res.fileList)
     //   },
-    //   fail(res) {
-    //     console.log(res.errMsg)
+    //   fail: err => {
+    //     // handle error
     //   }
     // })
-
-    wx.cloud.getTempFileURL({
-      fileList: ['cloud://hello-coach-1-3d05cc.6865-hello-coach-1-3d05cc-1259373909/my-image.jpg'],
-      success: res => {
-        // get temp file URL
-        console.log(res.fileList)
-      },
-      fail: err => {
-        // handle error
-      }
-    })
 
     if (!wx.cloud) {
       wx.redirectTo({
@@ -316,5 +316,13 @@ Page({
       }
     })
   },
+
+  transferPage: function(){
+    // var object_ = { nimei: [1, 2, 3, 4] };
+    // var json_ = JSON.stringify(object_);
+    wx.navigateTo({
+      url: '../webImages/webImages?from=背景图片'
+    })
+  }
 
 })

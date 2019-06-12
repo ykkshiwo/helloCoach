@@ -33,7 +33,6 @@ Component({
   data: {
     // inputShow: false,
     firstAttach: true,
-    imageInfo: '',
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {
@@ -118,49 +117,31 @@ Component({
           });
         } else {
           console.log("用户自己来选择");
-          wx.showActionSheet({
-            itemList: ['网络素材', '我的相册'],
+          wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
             success(res) {
-              console.log(res.tapIndex);
-              console.log(that.data.imageInfo);
-              var info = JSON.stringify({a:123});
-              if (res.tapIndex == 0){
-                wx.navigateTo({
-                  url: '../webImages/webImages?from=课程图片&Info=' + info,
-                })
-              }
-              else if (res.tapIndex == 1){
-                wx.chooseImage({
-                  count: 1,
-                  sizeType: ['original', 'compressed'],
-                  sourceType: ['album', 'camera'],
-                  success(res) {
-                    const tempFilePaths = res.tempFilePaths;
-                    that.setData({
-                      imageSrc: tempFilePaths,
-                    })
-                    wx.getImageInfo({
-                      src: res.tempFilePaths[0],
-                      success(res) {
-                        const sInfo_ = {
-                          sWidth: res.width,
-                          sHeight: res.height
-                        };
-                        that.triggerEvent('userclickcomponent', {
-                          picPath: tempFilePaths,
-                          sInfo: sInfo_,
-                          locatInfo: that.data
-                        });
-                      }
-                    })
-                  }
-                })
-              }
-            },
-            fail(res) {
-              console.log(res.errMsg)
+              const tempFilePaths = res.tempFilePaths;
+              that.setData({
+                imageSrc: tempFilePaths,
+              })
+              wx.getImageInfo({
+                src: res.tempFilePaths[0],
+                success(res) {
+                  const sInfo_ = {
+                    sWidth: res.width,
+                    sHeight: res.height
+                  };
+                  that.triggerEvent('userclickcomponent', {
+                    picPath: tempFilePaths,
+                    sInfo: sInfo_,
+                    locatInfo: that.data
+                  });
+                }
+              })
             }
-          });
+          })
         }
       }
     },

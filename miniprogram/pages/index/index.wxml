@@ -24,6 +24,7 @@
   <view style="position: fixed; top: 350rpx; left: 12rpx;">
     <button bindtap='startDraw'>绘制保存</button>
     <button bindtap='changeBackground'>背景图片</button>
+    <button bindtap='transferPage'>跳转测试</button>
   </view>
 
   <!-- 用户 openid 

@@ -17,7 +17,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function(option) {
+    console.log(option.Info);
+    // console.log(JSON.parse(option.sz));
     console.log("数据库启动 2")
     const helloCoachDB = wx.cloud.database({
       env: 'hello-coach-1-3d05cc'
@@ -32,6 +34,8 @@ Page({
       courseCollection: courseCollection,
       otherCollection: otherCollection
     });
+
+    this.changePage(option.from);
 
   },
 
@@ -115,9 +119,7 @@ Page({
     });
   },
 
-  clickChangeImagesPage: function(e) {
-    console.log(e);
-    var targetId = e.target.id;
+  changePage: function(targetId) {
     const that = this;
     switch (targetId) {
       case "背景图片":
@@ -159,6 +161,12 @@ Page({
       default:
         break;
     }
+  },
+
+  clickChangeImagesPage: function (e) {
+    console.log(e);
+    var targetId = e.target.id;
+    this.changePage(targetId);
   }
 
 })

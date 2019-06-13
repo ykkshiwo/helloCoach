@@ -165,7 +165,7 @@ Page({
 
   userClickcomponentF: function(e) {
     console.log("父组件被触发");
-    console.log(e.target.id);
+    console.log(e);
     console.log(e.detail, "写入图片数组");
     var cr = this.checkRepeat(this.data.picArray, e.detail, e.target.id);
     if (cr) {
@@ -186,28 +186,32 @@ Page({
     })
   },
 
+  onShow: function(option){
+    console.log("展现页面",option);
+  },
+
   onLoad: function(option) {
 
-    if (option.imageUrl){
+    if (option.from_ == "课程图片"){
+      console.log("选择完课程图片后返回。");
       console.log(option);
-      this.setData({
-        backgroundPic: option.imageUrl
-      })
-    }
-    var info = JSON.stringify({ a: 123 });
-    console.log(info);
-    // console.log("输出传递回来的图片链接：", option.imageUrl);
+      var imageFromWebInfo = JSON.parse(option.deliverToIndex);
+      //和上面的将图片push进入数组一样
+      var cr = this.checkRepeat(this.data.picArray, imageFromWebInfo, option.id_);
+      if (cr) {
+        console.log("图片数组中没有重复。");
+        this.data.picArray.push({
+          id_: option.id_,
+          data: imageFromWebInfo
+        });
+      } else {
+        console.log("图片数组中有重复，已经替换");
+      }
+      console.log("最新的图片数组：", this.data.picArray);
 
-    // wx.cloud.getTempFileURL({
-    //   fileList: ['cloud://hello-coach-1-3d05cc.6865-hello-coach-1-3d05cc-1259373909/my-image.jpg'],
-    //   success: res => {
-    //     // get temp file URL
-    //     console.log(res.fileList)
-    //   },
-    //   fail: err => {
-    //     // handle error
-    //   }
-    // })
+    }
+
+    // console.log("输出传递回来的图片链接：", option.imageUrl);
 
     if (!wx.cloud) {
       wx.redirectTo({
@@ -321,7 +325,7 @@ Page({
     // var object_ = { nimei: [1, 2, 3, 4] };
     // var json_ = JSON.stringify(object_);
     wx.navigateTo({
-      url: '../webImages/webImages?from=背景图片'
+      url: '../webImages/webImages?from_=背景图片'
     })
   }
 

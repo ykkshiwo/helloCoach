@@ -9,6 +9,7 @@ Component({
       observer: function(newVal, oldVal) {} // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
     },
     myProperty2: String, // 简化的定义方式
+    mId: String,
     thisTop: String,
     thisLeft: String,
     thisWidth: String,
@@ -34,7 +35,8 @@ Component({
     // inputShow: false,
     firstAttach: true,
     imageInfo: '',
-  }, // 私有数据，可用于模版渲染
+    sInfo_: '',
+  },
 
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
@@ -46,6 +48,7 @@ Component({
         thisHeight1: this.properties.thisHeight,
       });
       this.userClickcomponent();
+      console.log("m-id:", this.properties.mId);
     },
     moved: function() {},
     detached: function() {},
@@ -122,14 +125,20 @@ Component({
             itemList: ['网络素材', '我的相册'],
             success(res) {
               console.log(res.tapIndex);
-              console.log(that.data.imageInfo);
-              var info = JSON.stringify({a:123});
-              if (res.tapIndex == 0){
-                wx.navigateTo({
-                  url: '../webImages/webImages?from=课程图片&Info=' + info,
-                })
+              var locatInfo = {
+                thisHeight: that.properties.thisHeight,
+                thisWidth: that.properties.thisWidth,
+                thisTop: that.properties.thisTop,
+                thisLeft: that.properties.thisLeft
               }
-              else if (res.tapIndex == 1){
+              console.log(locatInfo);
+              var locatInfo_str = JSON.stringify(locatInfo);
+              console.log(locatInfo_str);
+              if (res.tapIndex == 0) {
+                wx.navigateTo({
+                  url: '../webImages/webImages?from_=课程图片&locatInfo_str=' + locatInfo_str + "&id_=" + that.properties.mId,
+                })
+              } else if (res.tapIndex == 1) {
                 wx.chooseImage({
                   count: 1,
                   sizeType: ['original', 'compressed'],

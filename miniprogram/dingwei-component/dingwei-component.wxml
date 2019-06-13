@@ -1,4 +1,4 @@
-<dingwei-component bindtap='userClickcomponent'>
+<dingwei-component id="{{ mId }}" bindtap='userClickcomponent'>
 
   <view class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}; font-size: {{ thisHeight }}"> {{ valueText }}
   </view>

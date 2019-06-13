@@ -8,7 +8,7 @@
 <scroll-view scroll-y="{{ true }}" style="background-color: rgba(255,192,228, 0.2);border-top: 1px solid rgba(255,192,228, 0.5)">
   <view class='scroll-main'>
     <block wx:for="{{webImagesUrl}}" wx:key="fileID">
-      <web-image-component id="{{ item.fileID }}" image-url="{{ item.tempFileURL }}"></web-image-component>
+      <web-image-component this-option="{{ nowOption }}" from-page="{{ form_page }}" id="{{ item.fileID }}" image-url="{{ item.tempFileURL }}"></web-image-component>
     </block>
   </view>
 </scroll-view>

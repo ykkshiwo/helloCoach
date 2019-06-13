@@ -7,18 +7,18 @@
 
   <image style="position: fixed; top:0; left0; width: 750rpx; height: 100vh" mode="scaleToFill" src="{{ backgroundPic }}" />
 
-  <dingwei-component wx:if="{{ hide }}" id='1' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
+  <dingwei-component wx:if="{{ hide }}" id="1"  m-id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
     image-src="/images/code-db-inc-dec.png"></dingwei-component>
 
-  <dingwei-component wx:if="{{ hide }}" id='2' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
+  <dingwei-component wx:if="{{ hide }}" id="2" m-id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
     image-src="/images/code-db-inc-dec.png"></dingwei-component>
 
 
 
-  <dingwei-component wx:if="{{ hide }}" id='3' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="900rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}"
+  <dingwei-component wx:if="{{ hide }}" id="3" m-id="3" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="900rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}"
     value-text="你好啊"></dingwei-component>
 
-  <dingwei-component wx:if="{{ hide }}" id='4' binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}"
+  <dingwei-component wx:if="{{ hide }}" id="4" m-id="4" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}"
     value-text="你好"></dingwei-component>
 
   <view style="position: fixed; top: 350rpx; left: 12rpx;">

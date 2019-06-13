@@ -1,5 +1,5 @@
 <!--pages/webImages/web-image-component/web-image-component.wxml-->
-<view bindtap='backToIndexByImageUrl' class="web-image" style="background-image: url('{{ imageUrl }}'); background-size:300rpx 485rpx; width: 300rpx; height:485rpx;">
+<view bindtap='backToIndexByImageUrl'  option="{{ thisOption }}" class="web-image" style="background-image: url('{{ imageUrl }}'); background-size:300rpx 485rpx; width: 300rpx; height:485rpx;">
   <view class="web-image-1">
     <view style="margin-left: 20rpx; font-size:30rpx;margin-top: 10rpx">一次伟大的尝试</view>
     <view style="margin-left: 20rpx; font-size:26rpx; color: #666666">向自己致敬</view>

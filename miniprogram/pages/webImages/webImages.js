@@ -12,14 +12,24 @@ Page({
     fontWeightbg: '',
     fontWeightkc: '',
     fontWeightqt: '',
+    nowOption: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option) {
-    console.log(option.Info);
-    // console.log(JSON.parse(option.sz));
+
+    var option_ = {
+      from_: option.from_,
+      locatInfo: JSON.parse(option.locatInfo_str),
+      id_: option.id_
+    };
+    console.log(option_);
+    this.setData({
+      nowOption: option_,
+    })
+
     console.log("数据库启动 2")
     const helloCoachDB = wx.cloud.database({
       env: 'hello-coach-1-3d05cc'
@@ -35,7 +45,7 @@ Page({
       otherCollection: otherCollection
     });
 
-    this.changePage(option.from);
+    this.changePage(option.from_);
 
   },
 

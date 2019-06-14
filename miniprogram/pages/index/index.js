@@ -34,6 +34,10 @@ Page({
     for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data
       console.log("绘制图片的路径：", pic.picPath);
+      if (pic.picPath[0].slice(0,5) == "https"){
+        var k = this.webUrlTotemPath(pic.picPath[0]);
+        console.log("网络图片变成临时路径：", k);
+      }
       ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
     }
   },
@@ -88,7 +92,7 @@ Page({
     });
   },
 
-  bindselectWebImage: function(e){
+  bindselectWebImage: function(e) {
     console.log("用户已经从云端选择了图片。")
     this.setData({
       showWebPage: false,
@@ -246,5 +250,19 @@ Page({
       })
     }
   },
+
+  webUrlTotemPath: function(webUrl) {
+    wx.showLoading({
+      title: '正在加载网络图片···',
+    })
+    wx.downloadFile({
+      url: webUrl,
+      success: function(res) {
+        wx.hideLoading();
+        console.log("下载图片的临时路径为：", res.tempFilePath);
+        return res.tempFilePath;
+      }
+    })
+  }
 
 })

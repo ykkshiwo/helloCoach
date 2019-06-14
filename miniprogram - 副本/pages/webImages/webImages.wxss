@@ -1,0 +1,36 @@
+/* miniprogram/pages/webImages/webImages.wxss */
+
+.top{
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.top1{
+  color: #3f3f3f;
+  border: 0px solid black;
+  /* width: 180rpx; */
+  text-align: center;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  font-size: 32rpx;
+  padding-top: 20rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+
+.scroll-main{
+  display: flex;
+  width: 100%;
+  height: 1000rpx;
+  /* opacity: 0.5; */
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* align-content: space-around; */
+}

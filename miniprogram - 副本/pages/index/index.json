@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "dingwei-component": "../../dingwei-component/dingwei-component"
+  }
+}

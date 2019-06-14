@@ -1,0 +1,71 @@
+<!--index.wxml-->
+<view class="container" style='height:100vh;' capture-bind:tap='hideAllcomponent'>
+
+  <view wx:if="{{ canvasShow }}">
+    <canvas canvas-id="canvas" class="canvas" style="position:fixed;top:0;left:800rpx; height: {{ canvasHeight }};width:750rpx;"></canvas>
+  </view>
+
+  <image style="position: fixed; top:0; left0; width: 750rpx; height: 100vh" mode="scaleToFill" src="{{ backgroundPic }}" />
+
+  <dingwei-component wx:if="{{ hide }}" id="1"  m-id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
+    image-src="/images/code-db-inc-dec.png"></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="2" m-id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
+    image-src="/images/code-db-inc-dec.png"></dingwei-component>
+
+
+
+  <dingwei-component wx:if="{{ hide }}" id="3" m-id="3" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="900rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}"
+    value-text="你好啊"></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="4" m-id="4" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}"
+    value-text="你好"></dingwei-component>
+
+  <view style="position: fixed; top: 350rpx; left: 12rpx;">
+    <button bindtap='startDraw'>绘制保存</button>
+    <button bindtap='changeBackground'>背景图片</button>
+    <button bindtap='transferPage'>跳转测试</button>
+  </view>
+
+  <!-- 用户 openid 
+  <view class="userinfo">
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+    ></button>
+    <view>
+      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+    </view>
+  </view>
+
+  <view>hello weixin</view>
+
+
+
+  <view class="uploader">
+    <view class="uploader-text" bindtap="doUpload">
+      <text>上传图片</text>
+    </view>
+    <view class="uploader-container" wx:if="{{imgUrl}}">
+      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    </view>
+  </view>
+
+
+
+  <view class="uploader">
+    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
+      <text>前端操作数据库</text>
+    </navigator>
+  </view>
+
+
+  <view class="uploader">
+    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
+      <text>快速新建云函数</text>
+    </navigator>
+</view> -->
+
+</view>

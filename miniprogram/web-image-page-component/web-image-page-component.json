@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "web-image-component": "../web-image-component/web-image-component"
+  }
+}

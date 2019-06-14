@@ -20,7 +20,7 @@ Page({
     canvasLeft: "750rpx",
     backgroundPic: "/images/b19a.jpg",
     backgroundPicInfo: '',
-    isFromOtherPage: false,
+    showWebPage: false,
   },
 
   hideComponent: function() {
@@ -33,7 +33,7 @@ Page({
     console.log("开始绘制图片");
     for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data
-      console.log(pic.locatInfo);
+      console.log("绘制图片的路径：", pic.picPath);
       ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
     }
   },
@@ -52,24 +52,49 @@ Page({
 
   changeBackground: function() {
     const that = this;
-    wx.chooseImage({
-      success: function(res) {
-        that.setData({
-          backgroundPic: res.tempFilePaths[0],
-        });
-        wx.getImageInfo({
-          src: res.tempFilePaths[0],
-          success: function(res) {
-            that.setData({
-              backgroundPicInfo: {
-                sWidth: res.width,
-                sHeight: res.height,
-              }
-            })
-          }
-        })
+    wx.showActionSheet({
+      itemList: ['网络素材', '我的相册'],
+      success(res) {
+        console.log(res.tapIndex);
+        if (res.tapIndex == 0) {
+          that.setData({
+            showWebPage: true,
+          });
+          console.log("用户选择从云端选择图片");
+        } else if (res.tapIndex == 1) {
+          wx.chooseImage({
+            success: function(res) {
+              that.setData({
+                backgroundPic: res.tempFilePaths[0],
+              });
+              wx.getImageInfo({
+                src: res.tempFilePaths[0],
+                success: function(res) {
+                  that.setData({
+                    backgroundPicInfo: {
+                      sWidth: res.width,
+                      sHeight: res.height,
+                    },
+                  })
+                }
+              })
+            },
+          })
+        }
       },
-    })
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    });
+  },
+
+  bindselectWebImage: function(e){
+    console.log("用户已经从云端选择了图片。")
+    this.setData({
+      showWebPage: false,
+      backgroundPic: e.detail.picPath[0],
+      backgroundPicInfo: e.detail.sInfo
+    });
   },
 
   startDraw: function() {
@@ -78,10 +103,6 @@ Page({
     })
 
     var ctx = wx.createCanvasContext('canvas');
-    // var ctx = wx.createOffscreenCanvas('canvas');
-    // ctx.rect(0, 0, app.globalData.screenWidthPx, app.globalData.screenHeightPx);
-    // ctx.setFillStyle('white');
-    // ctx.fill();
     ctx.drawImage(this.data.backgroundPic, 0, 0, this.data.backgroundPicInfo.sWidth, this.data.backgroundPicInfo.sHeight, 0, 0, app.globalData.screenWidthPx, app.globalData.screenHeightPx);
 
     this.drawPictures(this.data.picArray, ctx);
@@ -189,31 +210,6 @@ Page({
 
   onLoad: function(option) {
 
-    if (option.from_ == "课程图片"){
-      console.log("选择完课程图片后返回。");
-      console.log("页面不能重新加载...");
-      this.setData({
-        isFromOtherPage: true,
-      });
-      console.log(option);
-      var imageFromWebInfo = JSON.parse(option.deliverToIndex);
-      //和上面的将图片push进入数组一样
-      var cr = this.checkRepeat(this.data.picArray, imageFromWebInfo, option.id_);
-      if (cr) {
-        console.log("图片数组中没有重复。");
-        this.data.picArray.push({
-          id_: option.id_,
-          data: imageFromWebInfo
-        });
-      } else {
-        console.log("图片数组中有重复，已经替换");
-      }
-      console.log("最新的图片数组：", this.data.picArray);
-
-    }
-
-    // console.log("输出传递回来的图片链接：", option.imageUrl);
-
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -250,84 +246,5 @@ Page({
       })
     }
   },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
-  },
-
-  // 上传图片
-  doUpload: function() {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function(res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-
-  transferPage: function(){
-    // var object_ = { nimei: [1, 2, 3, 4] };
-    // var json_ = JSON.stringify(object_);
-    wx.navigateTo({
-      url: '../webImages/webImages?from_=背景图片'
-    })
-  }
 
 })

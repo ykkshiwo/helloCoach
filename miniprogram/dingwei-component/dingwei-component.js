@@ -3,13 +3,6 @@ Component({
   behaviors: [],
 
   properties: {
-    myProperty: { // 属性名
-      type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-      value: '', // 属性初始值（可选），如果未指定则会根据类型选择一个
-      observer: function(newVal, oldVal) {} // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
-    },
-    myProperty2: String, // 简化的定义方式
-    mId: String,
     thisTop: String,
     thisLeft: String,
     thisWidth: String,
@@ -32,11 +25,7 @@ Component({
     }
   },
   data: {
-    // inputShow: false,
     firstAttach: true,
-    imageInfo: '',
-    sInfo_: '',
-    showWebPage: false,
   },
 
   lifetimes: {
@@ -49,7 +38,6 @@ Component({
         thisHeight1: this.properties.thisHeight,
       });
       this.userClickcomponent();
-      console.log("m-id:", this.properties.mId);
     },
     moved: function() {},
     detached: function() {},
@@ -136,9 +124,10 @@ Component({
               var locatInfo_str = JSON.stringify(locatInfo);
               console.log(locatInfo_str);
               if (res.tapIndex == 0) {
-                wx.navigateTo({
-                  url: '../webImages/webImages?from_=课程图片&locatInfo_str=' + locatInfo_str + "&id_=" + that.properties.mId,
-                })
+                that.setData({
+                  showWebPage: true,
+                });
+                console.log("用户选择从云端选择图片");
               } else if (res.tapIndex == 1) {
                 wx.chooseImage({
                   count: 1,
@@ -175,17 +164,71 @@ Component({
       }
     },
 
-    onMyButtonTap: function() {
-      this.setData({
-        // 更新属性和数据的方法与更新页面数据的方法类似
-        myProperty: 'Test'
-      })
+    changePage: function(targetId) {
+      const that = this;
+      switch (targetId) {
+        case "背景图片":
+          console.log("点击背景图片");
+          this.setData({
+            borderBottomWidthbg: '2px',
+            borderBottomWidthkc: '',
+            borderBottomWidthqt: '',
+            fontWeightbg: 'bold',
+            fontWeightkc: '',
+            fontWeightqt: '',
+          })
+          this.changeImagesPage(this.data.backgroundCollection, that);
+          break;
+        case "课程图片":
+          console.log("点击课程图片");
+          this.setData({
+            borderBottomWidthbg: '',
+            borderBottomWidthkc: '2px',
+            borderBottomWidthqt: '',
+            fontWeightbg: '',
+            fontWeightkc: 'bold',
+            fontWeightqt: '',
+          })
+          this.changeImagesPage(this.data.courseCollection, that);
+          break;
+        case "其他图片":
+          console.log("点击其他图片");
+          this.setData({
+            borderBottomWidthbg: '',
+            borderBottomWidthkc: '',
+            borderBottomWidthqt: '2px',
+            fontWeightbg: '',
+            fontWeightkc: '',
+            fontWeightqt: 'bold',
+          })
+          this.changeImagesPage(this.data.otherCollection, that);
+          break;
+        default:
+          break;
+      }
     },
-    _myPrivateMethod: function() {
-      // 内部方法建议以下划线开头
-      this.replaceDataOnPath(['A', 0, 'B'], 'myPrivateData') // 这里将 data.A[0].B 设为 'myPrivateData'
-      this.applyDataUpdates()
-    }
-  }
 
+    clickChangeImagesPage: function(e) {
+      console.log(e);
+      var targetId = e.target.id;
+      this.changePage(targetId);
+    },
+
+    bindselectWebImage: function(e){
+      console.log("web-image-component组件点击", e.detail);
+      this.setData({
+        showWebPage: false
+      })
+      console.log("云端图片页面被关闭");
+      this.triggerEvent('userclickcomponent', {
+        picPath: e.detail.picPath,
+        sInfo: e.detail.sInfo,
+        locatInfo: this.data
+      });
+      this.setData({
+        imageSrc: e.detail.picPath[0],
+      })
+    }
+    
+  }
 })

@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "dingwei-component-input": "../dingwei-component-input/dingwei-component-input"
+    "dingwei-component-input": "../dingwei-component-input/dingwei-component-input",
+    "web-image-component": "../web-image-component/web-image-component"
   }
 }

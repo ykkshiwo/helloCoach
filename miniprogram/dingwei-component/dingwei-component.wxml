@@ -9,5 +9,22 @@
     <dingwei-component-input wx:if="{{ inputShow }}" bindneeddraw='drawOne' this-top1="{{ thisTop1 }}" this-left1="{{ thisLeft1 }}" this-height1="{{ thisHeight1 }}" this-width1="{{ thisWidth1 }}" this-input="{{ valueText }}"></dingwei-component-input>
   </view>
 
-<view>test</view>
+  <view>test</view>
+  <!-- 以下为选择网络图片的页面 -->
+  <view class="webPage" wx:if="{{ false }}">
+    <view class='top'>
+      <view id="背景图片" class='top1' style="border-bottom-width: {{ borderBottomWidthbg }}; font-weight: {{ fontWeightbg }};" bindtap='clickChangeImagesPage'>背景图片</view>
+      <view id="课程图片" class='top1' style="border-bottom-width: {{ borderBottomWidthkc }}; font-weight: {{ fontWeightkc }};" bindtap='clickChangeImagesPage'>课程图片</view>
+      <view id="其他图片" class='top1' style="border-bottom-width: {{ borderBottomWidthqt }}; font-weight: {{ fontWeightqt }};" bindtap='clickChangeImagesPage'>其他图片</view>
+    </view>
+
+    <scroll-view scroll-y="{{ true }}" style="background-color: rgba(255,192,228, 0.2);border-top: 1px solid rgba(255,192,228, 0.5)">
+      <view class='scroll-main'>
+        <block wx:for="{{webImagesUrl}}" wx:key="fileID">
+          <web-image-component this-option="{{ nowOption }}" from-page="{{ form_page }}" id="{{ item.fileID }}" image-url="{{ item.tempFileURL }}"></web-image-component>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+
 </dingwei-component>

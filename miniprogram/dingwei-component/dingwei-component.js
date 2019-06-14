@@ -36,6 +36,7 @@ Component({
     firstAttach: true,
     imageInfo: '',
     sInfo_: '',
+    showWebPage: false,
   },
 
   lifetimes: {

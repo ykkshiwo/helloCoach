@@ -11,7 +11,7 @@
 
   <view>test</view>
   <!-- 以下为选择网络图片的页面 -->
-  <view class="webPage" wx:if="{{ false }}">
+  <view class="webPage" wx:if="{{ showWebPage }}">
     <view class='top'>
       <view id="背景图片" class='top1' style="border-bottom-width: {{ borderBottomWidthbg }}; font-weight: {{ fontWeightbg }};" bindtap='clickChangeImagesPage'>背景图片</view>
       <view id="课程图片" class='top1' style="border-bottom-width: {{ borderBottomWidthkc }}; font-weight: {{ fontWeightkc }};" bindtap='clickChangeImagesPage'>课程图片</view>

@@ -34,7 +34,7 @@ Page({
     for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data
       console.log("绘制图片的路径：", pic.picPath);
-      if (pic.picPath[0].slice(0,5) == "https"){
+      if (pic.picPath[0].slice(0, 5) == "https") {
         var k = this.webUrlTotemPath(pic.picPath[0]);
         console.log("网络图片变成临时路径：", k);
       }
@@ -214,6 +214,15 @@ Page({
 
   onLoad: function(option) {
 
+    for (var i = 0; i < 12; i++) {
+      if (i < 5) {
+        console.log("i<5");
+        continue;
+      } else {
+        console.log("i>5");
+      }
+    }
+
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -263,6 +272,23 @@ Page({
         return res.tempFilePath;
       }
     })
+  },
+
+  // for循环里的异步函数解决方案（匿名函数），同步下载云端图片
+  picArrayToWeb: function() {
+    for (var i = 0; i < files.length; i++) {
+      (
+        function(i) {
+          var itemFile = files[i];
+          fs.stat("./uploads/" + itemFile, function(err, stats) {
+            if (stats.isDirectory()) {
+              console.log(itemFile + i);
+            } else {
+              console.log(2);
+            }
+          });
+        })(i);
+    }
   }
 
 })

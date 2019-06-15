@@ -275,20 +275,32 @@ Page({
   },
 
   // for循环里的异步函数解决方案（匿名函数），同步下载云端图片
-  picArrayToWeb: function() {
-    for (var i = 0; i < files.length; i++) {
-      (
-        function(i) {
-          var itemFile = files[i];
-          fs.stat("./uploads/" + itemFile, function(err, stats) {
-            if (stats.isDirectory()) {
-              console.log(itemFile + i);
-            } else {
-              console.log(2);
+  picArrayToWeb: function(oldPicArray) {
+    console.log("匿名函数开始······");
+    for (var i = 0; i < oldPicArray.length; i++) {
+      (function(x) {
+        if (x.data.picPath[0].slice(0, 5) == "https") {
+          wx.downloadFile({
+            url: x.data.picPath[0],
+            success: function(res) {
+              if (res.statusCode === 200) {
+                console.log("是云端图片")
+                console.log(res.tempFilePath);
+              }
             }
-          });
-        })(i);
+          })
+        }
+        else{
+          console.log("不是云端图片")
+        }
+      })(oldPicArray[i]);
     }
+  },
+
+  testPicArrayToWeb: function(){
+    this.picArrayToWeb(this.data.picArray);
+    console.log("匿名函数结束······");
   }
+
 
 })

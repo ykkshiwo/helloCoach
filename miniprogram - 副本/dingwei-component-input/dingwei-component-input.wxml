@@ -1,4 +1,0 @@
-<dingwei-component-input>
-  <input class="dingwei" style="position: fixed; top:{{ thisTop1 }}; left:{{ thisLeft1 }}; width: {{ thisWidth1 }}; height: {{ thisHeight1 }}" value='{{ thisInput }}' bindinput='bindKeyInput' bindblur='loseFocus' focus="{{ true }}" bindconfirm="loseFocus" bindfocus="bindInitial">
-  </input>
-</dingwei-component-input>

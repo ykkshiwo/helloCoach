@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "dingwei-component-input": "../dingwei-component-input/dingwei-component-input"
-  }
-}

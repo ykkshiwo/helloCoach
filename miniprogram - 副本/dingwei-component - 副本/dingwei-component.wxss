@@ -1,9 +1,0 @@
-.dingwei {
-  background-color: rgba(104, 89, 180, 0.0);
-  /* border: 2rpx solid black; */
-  padding: 0px;
-  opacity: 1;
-  white-space: nowrap;
-  box-sizing: content-box;
-  padding-top: 0px;
-}

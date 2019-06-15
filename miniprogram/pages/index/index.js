@@ -274,33 +274,40 @@ Page({
     })
   },
 
-  // for循环里的异步函数解决方案（匿名函数），同步下载云端图片
-  picArrayToWeb: function(oldPicArray) {
-    console.log("匿名函数开始······");
-    for (var i = 0; i < oldPicArray.length; i++) {
-      (function(x) {
-        if (x.data.picPath[0].slice(0, 5) == "https") {
-          wx.downloadFile({
-            url: x.data.picPath[0],
-            success: function(res) {
-              if (res.statusCode === 200) {
-                console.log("是云端图片")
-                console.log(res.tempFilePath);
-              }
-            }
-          })
-        }
-        else{
-          console.log("不是云端图片")
-        }
-      })(oldPicArray[i]);
+  getIdArrayFromWeb: function(picArray) {
+    var idArrayFromWeb = [];
+    for (var i = 0; i < picArray.length; i++) {
+      if (picArray[i].data.picPath[0].slice(0, 5) == "https") {
+        idArrayFromWeb.push(picArray[i].id_)
+      }
     }
+    console.log("从云端选择图片的组件ID是：", idArrayFromWeb);
+    return idArrayFromWeb;
   },
 
-  testPicArrayToWeb: function(){
-    this.picArrayToWeb(this.data.picArray);
-    console.log("匿名函数结束······");
-  }
+  startDownloadImages: function(idArrayFromWeb, picArray) {
+    var arrayTask = [];
+    for (var i = 0; i < idArrayFromWeb.length; i++) {
+      var id = idArrayFromWeb[i];
+      arrayTask.push({
+        id: 0
+      });
+      this.setData({
+        arrayTask: arrayTask
+      })
+      wx.downloadFile({
+        url: picArray[i].data.picPath[0],
+        success: function() {
+          console.log("下载成功");
+        }
+      })
+    }
+    console.log("记录下正在下载的图片的字典为：", this.data.arrayTask);
+  },
 
+  testFunction: function() {
+    var idArrayFromWeb = this.getIdArrayFromWeb(this.data.picArray);
+    this.startDownloadImages(idArrayFromWeb, this.data.picArray);
+  }
 
 })

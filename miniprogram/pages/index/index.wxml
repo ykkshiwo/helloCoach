@@ -24,7 +24,7 @@
   <view style="position: fixed; top: 350rpx; left: 12rpx;">
     <button bindtap='startDraw'>绘制保存</button>
     <button bindtap='changeBackground'>背景图片</button>
-    <button bindtap='testPicArrayToWeb'>测试匿名函数</button>
+    <button bindtap='testFunction'>测试函数</button>
   </view>
 
   <block wx:if="{{ showWebPage }}">

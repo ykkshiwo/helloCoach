@@ -20,9 +20,8 @@
   <dingwei-component wx:if="{{ hide }}" id="4" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
 
   <view style="position: fixed; top: 350rpx; left: 12rpx;">
-    <button bindtap='startDraw'>绘制保存</button>
-    <button bindtap='changeBackground'>背景图片</button>
-    <button bindtap='testFunction'>测试函数</button>
+    <button bindtap='testFunction'>绘制保存</button>
+    <button bindtap='changeBackground'>更换背景</button>
   </view>
 
   <block wx:if="{{ showWebPage }}">

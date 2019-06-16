@@ -35,12 +35,7 @@ Page({
   drawPictures: function(picArray, ctx) {
     console.log("开始绘制图片");
     for (var i = 0; i < picArray.length; i++) {
-      var pic = picArray[i].data
-      // console.log("绘制图片的路径：", pic.picPath);
-      // if (pic.picPath[0].slice(0, 5) == "https") {
-      //   var k = this.webUrlTotemPath(pic.picPath[0]);
-      //   console.log("网络图片变成临时路径：", k);
-      // }
+      var pic = picArray[i].data;
       ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
     }
   },

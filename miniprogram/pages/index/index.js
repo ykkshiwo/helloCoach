@@ -23,7 +23,7 @@ Page({
     backgroundPicInfo: '',
     showWebPage: false,
     nowArrayTask: 0,
-    needTask: 0,
+    needTask: 0, 
   },
 
   hideComponent: function() {
@@ -63,9 +63,11 @@ Page({
       itemList: ['网络素材', '我的相册'],
       success(res) {
         console.log(res.tapIndex);
+        var needTask = that.data.needTask;
         if (res.tapIndex == 0) {
           that.setData({
             showWebPage: true,
+            needTask: needTask,
           });
           console.log("用户选择从云端选择图片");
         } else if (res.tapIndex == 1) {
@@ -96,12 +98,29 @@ Page({
   },
 
   bindselectWebImage: function(e) {
-    console.log("用户已经从云端选择了图片。")
+    const that = this;
+    console.log("用户已经从云端选择了背景图片。");
+    var backgroundUrl = e.detail.picPath[0];
+    var needTask = that.data.needTask + 1;
     this.setData({
       showWebPage: false,
-      backgroundPic: e.detail.picPath[0],
-      backgroundPicInfo: e.detail.sInfo
+      backgroundPic: backgroundUrl,
+      backgroundPicInfo: e.detail.sInfo,
+      needTask: needTask
     });
+    console.log("背景图片选择完成后：", this.data.needTask);
+    wx.downloadFile({
+      url: backgroundUrl,
+      success: function(res){
+        console.log("背景网络图片下载完成", res.tempFilePath);
+        var nowArrayTask = that.data.nowArrayTask + 1;
+        that.setData({
+          backgroundPic: res.tempFilePath,
+          backgroundPicInfo: e.detail.sInfo,
+          nowArrayTask: nowArrayTask
+        })
+      }
+    })
   },
 
   startDraw: function() {
@@ -284,8 +303,11 @@ Page({
         idArrayFromWeb.push(picArray[i].id_)
       }
     }
+    console.log("此时的 this.data.needTask 为：", this.data.needTask)
+    var needTask = this.data.needTask + idArrayFromWeb.length
+
     this.setData({
-      needTask: idArrayFromWeb.length,
+      needTask: needTask,
     })
     console.log("从云端选择图片的组件ID是：", idArrayFromWeb);
     console.log("从云端选择图片的个数：", this.data.needTask);

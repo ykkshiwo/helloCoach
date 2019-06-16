@@ -14,6 +14,7 @@ Page({
     inputShow: false, //初始状态input不显示
     picArray: [],
     textArray: [],
+    temPathArray: [],
     hide: true,
     canvasHeight: '',
     canvasShow: true,
@@ -21,6 +22,8 @@ Page({
     backgroundPic: "/images/b19a.jpg",
     backgroundPicInfo: '',
     showWebPage: false,
+    nowArrayTask: 0,
+    needTask: 0,
   },
 
   hideComponent: function() {
@@ -281,33 +284,72 @@ Page({
         idArrayFromWeb.push(picArray[i].id_)
       }
     }
+    this.setData({
+      needTask: idArrayFromWeb.length,
+    })
     console.log("从云端选择图片的组件ID是：", idArrayFromWeb);
+    console.log("从云端选择图片的个数：", this.data.needTask);
     return idArrayFromWeb;
   },
 
   startDownloadImages: function(idArrayFromWeb, picArray) {
-    var arrayTask = [];
+    const that = this;
     for (var i = 0; i < idArrayFromWeb.length; i++) {
-      var id = idArrayFromWeb[i];
-      arrayTask.push({
-        id: 0
-      });
-      this.setData({
-        arrayTask: arrayTask
-      })
-      wx.downloadFile({
-        url: picArray[i].data.picPath[0],
-        success: function() {
-          console.log("下载成功");
-        }
-      })
+      (function(i) {
+        wx.downloadFile({
+          url: picArray[i].data.picPath[0],
+          success: function(res) {
+            console.log("下载成功");
+            var nowArrayTask = that.data.nowArrayTask;
+            that.setData({
+              nowArrayTask: nowArrayTask + 1,
+            });
+            var temPathArray = that.data.temPathArray;
+            temPathArray.push({ id_: idArrayFromWeb[i], picPath: res.tempFilePath});
+            that.setData({
+              temPathArray: temPathArray,
+            })
+          }
+        })
+      })(i)
     }
-    console.log("记录下正在下载的图片的字典为：", this.data.arrayTask);
+
+  },
+
+  startWhenDownloadSuccess: function(fun) {
+    const that = this;
+    setTimeout(function() {
+      console.log("监测是否下载完成。");
+      if (that.data.needTask == that.data.nowArrayTask) {
+        var tem = that.data.temPathArray;
+        var pic = that.data.picArray;
+        console.log(tem);
+        for (var i = 0; i < tem.length; i++){
+          for (var j = 0; j < pic.length; j++){
+            if(pic[j].id_ == tem[i].id_){
+              console.log("id一致，需要更换为本地路径");
+              console.log(tem[i].picPath);
+              console.log(pic[j].data.picPath[0]);
+              pic[j].data.picPath[0] = tem[i].picPath
+            }
+          }
+        }
+        that.setData({
+          picArray: pic
+        })
+        console.log(that.data.picArray);
+        console.log("下载全部完成，可以执行函数");
+        fun();
+      } else {
+        that.startWhenDownloadSuccess()
+      }
+    }, 500);
   },
 
   testFunction: function() {
     var idArrayFromWeb = this.getIdArrayFromWeb(this.data.picArray);
     this.startDownloadImages(idArrayFromWeb, this.data.picArray);
+    this.startWhenDownloadSuccess(this.startDraw);
   }
 
 })

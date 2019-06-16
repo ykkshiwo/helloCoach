@@ -13,6 +13,9 @@
   <dingwei-component wx:if="{{ hide }}" id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
     image-src="/images/code-db-inc-dec.png"></dingwei-component>
 
+      <dingwei-component wx:if="{{ hide }}" id="5" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="850rpx" this-left="80rpx" this-width="600rpx" this-height="100rpx" input-show="{{ inputShow }}" is-text="{{ false }}"
+    image-src="/images/code-db-inc-dec.png"></dingwei-component>
+
 
 
   <dingwei-component wx:if="{{ hide }}" id="3" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" my-property="examples" this-top="900rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}"

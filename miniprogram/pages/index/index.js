@@ -36,11 +36,11 @@ Page({
     console.log("开始绘制图片");
     for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data
-      console.log("绘制图片的路径：", pic.picPath);
-      if (pic.picPath[0].slice(0, 5) == "https") {
-        var k = this.webUrlTotemPath(pic.picPath[0]);
-        console.log("网络图片变成临时路径：", k);
-      }
+      // console.log("绘制图片的路径：", pic.picPath);
+      // if (pic.picPath[0].slice(0, 5) == "https") {
+      //   var k = this.webUrlTotemPath(pic.picPath[0]);
+      //   console.log("网络图片变成临时路径：", k);
+      // }
       ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
     }
   },
@@ -295,38 +295,49 @@ Page({
   startDownloadImages: function(idArrayFromWeb, picArray) {
     const that = this;
     for (var i = 0; i < idArrayFromWeb.length; i++) {
-      (function(i) {
-        wx.downloadFile({
-          url: picArray[i].data.picPath[0],
-          success: function(res) {
-            console.log("下载成功");
-            var nowArrayTask = that.data.nowArrayTask;
-            that.setData({
-              nowArrayTask: nowArrayTask + 1,
-            });
-            var temPathArray = that.data.temPathArray;
-            temPathArray.push({ id_: idArrayFromWeb[i], picPath: res.tempFilePath});
-            that.setData({
-              temPathArray: temPathArray,
+      for (var j = 0; j < picArray.length; j++) {
+        if (idArrayFromWeb[i] == picArray[j].id_) {
+          (function(i,j) {
+            console.log("下载的图片的网络地址为：", picArray[j].data.picPath[0]);
+            wx.downloadFile({
+              url: picArray[j].data.picPath[0],
+              success: function(res) {
+                console.log("下载成功");
+                var nowArrayTask = that.data.nowArrayTask + 1;
+                console.log("现在的任务完成分数为：", nowArrayTask);
+                that.setData({
+                  nowArrayTask: nowArrayTask,
+                });
+                var temPathArray = that.data.temPathArray;
+                temPathArray.push({
+                  id_: idArrayFromWeb[i],
+                  picPath: res.tempFilePath
+                });
+                that.setData({
+                  temPathArray: temPathArray,
+                })
+              }
             })
-          }
-        })
-      })(i)
+          })(i,j)
+        }
+      }
     }
 
   },
 
-  startWhenDownloadSuccess: function(fun) {
+  startWhenDownloadSuccess: function() {
     const that = this;
     setTimeout(function() {
       console.log("监测是否下载完成。");
+      console.log("needTask 和 nowArrayTask :", that.data.needTask, that.data.nowArrayTask);
       if (that.data.needTask == that.data.nowArrayTask) {
+        console.log("分数相等，所有图片下载完成。");
         var tem = that.data.temPathArray;
         var pic = that.data.picArray;
-        console.log(tem);
-        for (var i = 0; i < tem.length; i++){
-          for (var j = 0; j < pic.length; j++){
-            if(pic[j].id_ == tem[i].id_){
+        console.log("所有云端图片的本地临时路径为：", tem);
+        for (var i = 0; i < tem.length; i++) {
+          for (var j = 0; j < pic.length; j++) {
+            if (pic[j].id_ == tem[i].id_) {
               console.log("id一致，需要更换为本地路径");
               console.log(tem[i].picPath);
               console.log(pic[j].data.picPath[0]);
@@ -339,7 +350,7 @@ Page({
         })
         console.log(that.data.picArray);
         console.log("下载全部完成，可以执行函数");
-        fun();
+        that.startDraw();
       } else {
         that.startWhenDownloadSuccess()
       }
@@ -349,7 +360,7 @@ Page({
   testFunction: function() {
     var idArrayFromWeb = this.getIdArrayFromWeb(this.data.picArray);
     this.startDownloadImages(idArrayFromWeb, this.data.picArray);
-    this.startWhenDownloadSuccess(this.startDraw);
+    this.startWhenDownloadSuccess();
   }
 
 })

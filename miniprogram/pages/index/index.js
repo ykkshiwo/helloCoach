@@ -23,7 +23,7 @@ Page({
     backgroundPicInfo: '',
     showWebPage: false,
     nowArrayTask: 0,
-    needTask: 0, 
+    needTask: 0,
   },
 
   hideComponent: function() {
@@ -106,7 +106,7 @@ Page({
     console.log("背景图片选择完成后：", this.data.needTask);
     wx.downloadFile({
       url: backgroundUrl,
-      success: function(res){
+      success: function(res) {
         console.log("背景网络图片下载完成", res.tempFilePath);
         var nowArrayTask = that.data.nowArrayTask + 1;
         that.setData({
@@ -181,7 +181,7 @@ Page({
     }
   },
 
-  ccc: function(e) {
+  fromInputValue: function(e) {
     console.log("从input组件回调回来");
     console.log(typeof e.target.id);
     console.log(e.detail, "写入文字数组");
@@ -200,7 +200,7 @@ Page({
   },
 
   hideAllcomponent: function() {
-    console.log("首先最外层的捕获事件被触发");
+    console.log("首先最外层的捕获事件被触发,将文字输入组件input隐藏。");
     this.setData({
       inputShow: false, //点击定位组件时父组件先将所有的定位组件的input关闭
     });
@@ -314,7 +314,7 @@ Page({
     for (var i = 0; i < idArrayFromWeb.length; i++) {
       for (var j = 0; j < picArray.length; j++) {
         if (idArrayFromWeb[i] == picArray[j].id_) {
-          (function(i,j) {
+          (function(i, j) {
             console.log("下载的图片的网络地址为：", picArray[j].data.picPath[0]);
             wx.downloadFile({
               url: picArray[j].data.picPath[0],
@@ -335,7 +335,7 @@ Page({
                 })
               }
             })
-          })(i,j)
+          })(i, j)
         }
       }
     }
@@ -367,6 +367,11 @@ Page({
         })
         console.log(that.data.picArray);
         console.log("下载全部完成，可以执行函数");
+        that.setData({
+          nowArrayTask: 0,
+          needTask: 0,
+          temPathArray: [],
+        })
         that.startDraw();
       } else {
         that.startWhenDownloadSuccess()
@@ -376,8 +381,14 @@ Page({
 
   testFunction: function() {
     var idArrayFromWeb = this.getIdArrayFromWeb(this.data.picArray);
-    this.startDownloadImages(idArrayFromWeb, this.data.picArray);
-    this.startWhenDownloadSuccess();
+    if (this.data.needTask == 0){
+      console.log("没有从云端选择图片");
+      this.startDraw();
+    }
+    else{
+      this.startDownloadImages(idArrayFromWeb, this.data.picArray);
+      this.startWhenDownloadSuccess();
+    }
   }
 
 })

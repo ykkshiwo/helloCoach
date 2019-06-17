@@ -7,18 +7,6 @@
 
   <image style="position: fixed; top:0; left0; width: 750rpx; height: 100vh" mode="scaleToFill" src="{{ backgroundPic }}" />
 
-  <dingwei-component wx:if="{{ hide }}" id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src="/images/code-db-inc-dec.png"></dingwei-component>
-
-  <dingwei-component wx:if="{{ hide }}" id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src="/images/code-db-inc-dec.png"></dingwei-component>
-
-  <dingwei-component wx:if="{{ hide }}" id="5" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" this-top="850rpx" this-left="80rpx" this-width="600rpx" this-height="100rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src="/images/code-db-inc-dec.png"></dingwei-component>
-
-
-
-  <dingwei-component wx:if="{{ hide }}" id="3" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" this-top="900rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好啊"></dingwei-component>
-
-  <dingwei-component wx:if="{{ hide }}" id="4" binduserclickcomponent="userClickcomponentF" bindneeddraw="ccc" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
-
   <view style="position: fixed; top: 350rpx; left: 12rpx;">
     <button bindtap='testFunction'>绘制保存</button>
     <button bindtap='changeBackground'>更换背景</button>
@@ -27,5 +15,18 @@
   <block wx:if="{{ showWebPage }}">
     <web-image-page-component bindselectWebImage='bindselectWebImage'></web-image-page-component>
   </block>
+
+<!-- 以下部分为排版组件 -->
+  <dingwei-component wx:if="{{ hide }}" id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src="/images/code-db-inc-dec.png"></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src="/images/code-db-inc-dec.png"></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="3" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="850rpx" this-left="80rpx" this-width="600rpx" this-height="100rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src="/images/code-db-inc-dec.png"></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="4" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="900rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好啊"></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="5" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
+
+<!-- ----------------- -->
 
 </view>

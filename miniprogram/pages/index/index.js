@@ -19,7 +19,7 @@ Page({
     canvasHeight: '',
     canvasShow: true,
     canvasLeft: "750rpx",
-    backgroundPic: "/images/b19a.jpg",
+    backgroundPic: "/images/jianbian.jpg",
     backgroundPicInfo: '',
     showWebPage: false,
     nowArrayTask: 0,
@@ -230,23 +230,6 @@ Page({
   },
 
   onLoad: function(option) {
-
-    for (var i = 0; i < 12; i++) {
-      if (i < 5) {
-        console.log("i<5");
-        continue;
-      } else {
-        console.log("i>5");
-      }
-    }
-
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-
     // 获取用户信息
     wx.getSetting({
       success: res => {

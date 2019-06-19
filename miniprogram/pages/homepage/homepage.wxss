@@ -1,0 +1,36 @@
+/* miniprogram/pages/homepage/homepage.wxss */
+
+.frame{
+  background-color: yellowgreen;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.frame-top-part{
+  width: 100%;
+  background-color: rgba(6, 6, 6, 0.8);
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.white-frame{
+  background-color: white;
+  border-radius: 12px;
+  height: 90px;
+  width: 90px;
+  box-shadow: 3px 3px 8px 1px rgba(6, 6, 6, 0.28) inset;
+}
+
+.test{
+  background-color: yellow;
+  height: 100px;
+  width: 100px;
+}

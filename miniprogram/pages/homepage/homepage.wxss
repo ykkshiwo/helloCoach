@@ -1,7 +1,7 @@
 /* miniprogram/pages/homepage/homepage.wxss */
 
 .frame{
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
   height: 100vh;
   width: 100%;
   display: flex;
@@ -13,7 +13,7 @@
 
 .frame-top-part{
   width: 100%;
-  background-color: rgba(6, 6, 6, 0.8);
+  /* background-color: rgba(6, 6, 6, 0.8); */
   margin-top: 60px;
   display: flex;
   flex-direction: column;

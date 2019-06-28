@@ -3,7 +3,7 @@
 <view class="frame">
   <view class="frame-top-part">
     <view class='white-frame'>
-      <image src="./logo.png" mode='aspectFit' style="width: 68%"></image>
+      <image src="./logo.png" mode='aspectFit' style="width: 68%" animation="{{ani}}"></image>
     </view>
     <image src="./hellocoach.png" mode='aspectFit' style="height: 26px; width: 70px;"></image>
     <image src="./kldasd.png" mode='aspectFit' style="height: 60px; width: 200px;"></image>

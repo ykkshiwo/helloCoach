@@ -1,4 +1,10 @@
 /* miniprogram/pages/homepage/homepage.wxss */
+.background-image{
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+}
 
 .frame{
   /* background-color: yellowgreen; */
@@ -8,7 +14,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
+  position: relative;
+  z-index: 120;
 }
 
 .frame-top-part{

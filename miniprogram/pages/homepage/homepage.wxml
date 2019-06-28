@@ -1,4 +1,5 @@
 <!--miniprogram/pages/homepage/homepage.wxml-->
+<image class="background-image" src="./background.png"></image>
 <view class="frame">
   <view class="frame-top-part">
     <view class='white-frame'></view>

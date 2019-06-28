@@ -34,6 +34,10 @@
   height: 90px;
   width: 90px;
   box-shadow: 3px 3px 8px 1px rgba(6, 6, 6, 0.28) inset;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .test{

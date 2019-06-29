@@ -21,11 +21,15 @@ Page({
    */
   onReady: function() {
     var animation = wx.createAnimation({
-      duration: 2000,
-      timingFunction: 'ease-in-out',
-      delay: 1000
+      duration: 200,
+      timingFunction: 'linear',
+      delay: 500
     });
-    animation.opacity(0.2).translate(200, 200).step();
+    animation.scale(1.3).rotate(20).step().scale(1).rotate(0).step({
+      duration: 100,
+      timingFunction: 'ease-out',
+      delay: 0,
+    });
     this.setData({
       ani: animation.export()
     })

@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    "pages/screenshot/screenshot",
     "pages/homepage/homepage",
     "pages/index/index"
   ],

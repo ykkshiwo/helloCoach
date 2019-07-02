@@ -1,0 +1,8 @@
+<!--miniprogram/pages/screenshot/screenshot.wxml-->
+<!-- <text>miniprogram/pages/screenshot/screenshot.wxml</text> -->
+<view class="out-view">
+  <scroll-view style='width: 95%; height: 39%;background-color: yellow' scroll-y="true" scroll-x="true" bindtouchmove="scroll" bindtouchstart='scroll' bindtouchend='endTou'>
+    <!-- <image src="{{ imageUrl }}" style='width: {{width}}px;height: {{height}}px;' bindtouchmove="touch"></image> -->
+    <image src="{{ imageUrl }}" style='width: px;height: 260px;' bindtouchmove="touch"></image>
+  </scroll-view>
+</view>

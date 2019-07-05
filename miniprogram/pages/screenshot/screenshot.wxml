@@ -1,0 +1,11 @@
+<!--miniprogram/pages/screenshot/screenshot.wxml-->
+<!-- <text>miniprogram/pages/screenshot/screenshot.wxml</text> -->
+<view class="out-view">
+  <!-- <scroll-view id="scrollView" style='width: 95%; height: 39%;background-color: yellow' scroll-y="true" scroll-x="true" bindtouchmove="scroll" bindtouchstart='scroll' bindtouchend='endTou' bindscroll="getDisdanceOfScroll">
+    <image id="image" src="{{ imageUrl }}" style='width: {{width}}px;height: {{height}}px; magrin: 0; display:block;' bindtouchmove="touch"></image>
+  </scroll-view> -->
+
+  <view style="background-image: url(test.jpg); background-color: yellow; height: 350px; width: 300px; background-position: -50px -50px; background-size: 100px 200px; background-repeat: no-repeat">
+
+  </view>
+</view>

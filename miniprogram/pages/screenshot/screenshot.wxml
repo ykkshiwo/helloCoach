@@ -6,6 +6,6 @@
   </scroll-view> -->
 
   <view style="background-image: url(test.jpg); background-color: yellow; height: 350px; width: 300px; background-position: -50px -50px; background-size: 100px 200px; background-repeat: no-repeat">
-
   </view>
+  
 </view>

@@ -24,6 +24,7 @@ Component({
       value: true,
     }
   },
+
   data: {
     firstAttach: true,
   },
@@ -113,16 +114,16 @@ Component({
           wx.showActionSheet({
             itemList: ['网络素材', '我的相册'],
             success(res) {
-              console.log(res.tapIndex);
-              var locatInfo = {
-                thisHeight: that.properties.thisHeight,
-                thisWidth: that.properties.thisWidth,
-                thisTop: that.properties.thisTop,
-                thisLeft: that.properties.thisLeft
-              }
-              console.log(locatInfo);
-              var locatInfo_str = JSON.stringify(locatInfo);
-              console.log(locatInfo_str);
+              // console.log(res.tapIndex);
+              // var locatInfo = {
+              //   thisHeight: that.properties.thisHeight,
+              //   thisWidth: that.properties.thisWidth,
+              //   thisTop: that.properties.thisTop,
+              //   thisLeft: that.properties.thisLeft
+              // }
+              // console.log(locatInfo);
+              // var locatInfo_str = JSON.stringify(locatInfo);
+              // console.log(locatInfo_str);
               if (res.tapIndex == 0) {
                 that.setData({
                   showWebPage: true,
@@ -150,6 +151,7 @@ Component({
                           sInfo: sInfo_,
                           locatInfo: that.data
                         });
+                        console.log("接下进入裁剪界面。");
                       }
                     })
                   }

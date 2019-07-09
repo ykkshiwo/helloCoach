@@ -1,9 +1,9 @@
 {
   "cloud": true,
   "pages": [
+    "pages/index/index",
     "pages/screenshot/screenshot",
-    "pages/homepage/homepage",
-    "pages/index/index"
+    "pages/homepage/homepage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

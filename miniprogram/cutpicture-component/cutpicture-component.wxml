@@ -1,2 +1,8 @@
 <!--cutpicture-component/cutpicture-component.wxml-->
-<text>cutpicture-component/cutpicture-component.wxml</text>
+<view class='out-frame'>
+
+  <scroll-view id="scrollView" style='width: {{ frameWidth }}; height: {{ frameHeight }};background-color: yellow' scroll-y="true" scroll-x="true" bindtouchmove="scroll" bindtouchstart='scroll' bindtouchend='endTou' bindscroll="getDisdanceOfScroll">
+    <image id="image" src="{{ imageUrl }}" style='width: {{width}}px;height: {{height}}px; magrin: 0; display:block;' bindtouchmove="touch"></image>
+  </scroll-view>
+
+</view>

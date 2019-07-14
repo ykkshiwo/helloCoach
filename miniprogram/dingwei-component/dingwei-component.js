@@ -27,6 +27,7 @@ Component({
 
   data: {
     firstAttach: true,
+    ifCutPicture: false,
   },
 
   lifetimes: {
@@ -152,6 +153,9 @@ Component({
                           locatInfo: that.data
                         });
                         console.log("接下进入裁剪界面。");
+                        that.setData({
+                          ifCutPicture: true,
+                        })
                       }
                     })
                   }

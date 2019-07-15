@@ -28,5 +28,4 @@
   <dingwei-component wx:if="{{ hide }}" id="5" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
 
 <!-- ----------------- -->
-
 </view>

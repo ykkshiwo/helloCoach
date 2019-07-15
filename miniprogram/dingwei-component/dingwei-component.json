@@ -3,6 +3,7 @@
   "usingComponents": {
     "dingwei-component-input": "../dingwei-component-input/dingwei-component-input",
     "web-image-component": "../web-image-component/web-image-component",
-    "web-image-page-component": "../web-image-page-component/web-image-page-component"
+    "web-image-page-component": "../web-image-page-component/web-image-page-component",
+    "cutpicture-component": "../cutpicture-component/cutpicture-component"
   }
 }

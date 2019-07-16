@@ -5,6 +5,8 @@ Component({
   properties: {
     imageUrl: String,
     showWebpage: Boolean,
+    frameHeight: String,
+    frameWidth: String,
   },
   data: {
     inputValue: '',
@@ -16,6 +18,7 @@ Component({
     fontWeightbg: '',
     fontWeightkc: '',
     fontWeightqt: '',
+    ifCutPicture: false,
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {

@@ -11,7 +11,7 @@
 
   <!-- 以下为选择网络图片的页面 -->
   <block wx:if="{{ showWebPage }}">
-    <web-image-page-component bindselectWebImage='bindselectWebImage'></web-image-page-component>
+    <web-image-page-component bindselectWebImage='bindselectWebImage' frame-height="{{ thisHeight }}" frame-width="{{ thisWidth }}"></web-image-page-component>
   </block>
 
   <!-- 以下为相册中的截图组件 -->

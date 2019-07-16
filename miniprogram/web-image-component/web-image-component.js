@@ -4,10 +4,14 @@ Component({
 
   properties: {
     imageUrl: String,
+    frameHeight: String,
+    frameWidth: String,
   },
   data: {
     inputValue: '',
     show: false,
+    ifCutPicture: false,
+    sInfo_: "",
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {
@@ -39,13 +43,18 @@ Component({
             sWidth: res.width,
             sHeight: res.height
           };
-          that.triggerEvent('selectWebImage', {
-            picPath: [picPath],
-            sInfo: sInfo_,
-          }, {
-            bubbles: true,
-            composed: true
+          // that.triggerEvent('selectWebImage', {
+          //   picPath: [picPath],
+          //   sInfo: sInfo_,
+          // }, {
+          //   bubbles: true,
+          //   composed: true
+          // });
+          that.setData({
+            ifCutPicture: true,
+            sInfo_: sInfo_,
           });
+          console.log("传递上来的数据：", that.properties.frameHeight, that.properties.frameWidth); 
         }
       });
     },

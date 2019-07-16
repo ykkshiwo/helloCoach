@@ -1,16 +1,23 @@
 // cutpicture-component/cutpicture-component.js
+const app = getApp();
+const screenWidthPx = app.globalData.screenWidthPx
+const rpxTopx = app.globalData.rpxTopx
+
 Component({
 
   properties: {
     frameWidth: String,
     frameHeight: String,
+    picWidth: String,
+    picHeight: String,
+    imageUrl: String,
   },
 
   /**
    * 页面的初始数据
    */
   data: {
-    imageUrl: "./test.jpg",
+    imageUrl: "",
     width: 375,
     height: 700,
     olddistance: 0, //上一次两个手指的距离
@@ -24,23 +31,44 @@ Component({
     scrollY: 0,
     frameWidth: 0, //裁剪框架的宽度
     frameHeight: 0, //裁剪框架的高度
+    top: 0,
+    left: 0,
   },
 
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function() {
       console.log("裁剪组件执行。");
+      var sw =  this.properties.picWidth;
+      var sh =  this.properties.picHeight;
+      console.log("原始图片的尺寸：", this.properties.picWidth, this.properties.picHeight);
       console.log("frameWidth:", this.properties.frameWidth);
       console.log("frameHeight:", this.properties.frameHeight);
-      var fh = this.properties.frameHeight.slice(0, -3);
-      var fw = this.properties.frameWidth.slice(0, -3);
+      var ffh = this.properties.frameHeight.slice(0, -3) * rpxTopx
+      var ffw = this.properties.frameWidth.slice(0, -3) * rpxTopx
       console.log(fh);
       console.log(fw);
       this.setData({
-        frameWidth: "95%",
-        frameHeight: 0.95 * 750 * fh / fw + "rpx"
+        frameWidth: 0.95 * screenWidthPx,
+        frameHeight: 0.95 * screenWidthPx * ffh / ffw
       })
-      console.log(this.data.frameWidth, this.data.frameHeight);
+      var fw = 0.95 * screenWidthPx;
+      var fh = 0.95 * screenWidthPx * ffh / ffw;
+      console.log(fw, fh);
+      if ((sh / sw)<(fh / fw)){
+        var sh_ = fh;
+        var sw_ = fh / sh * sw;
+      } else if ((sh / sw) > (fh / fw)){
+        var sw_ = fw;
+        var sh_ = fw / sw * sh;
+      }
+      console.log("经过放大或者缩小后的原图片尺寸：", sh_, sw_);
+      this.setData({
+        baseHeight: sh_,
+        baseWidth: sw_,
+        height: sh_,
+        width: sw_,
+      })
     },
     moved: function() {},
     detached: function() {},
@@ -88,8 +116,12 @@ Component({
     },
 
     getDisdanceOfScroll: function(e) {
-      console.log("距离左侧距离： ", e.detail.scrollLeft)
-      console.log("距离顶部距离： ", e.detail.scrollTop)
+      console.log("距离左侧距离： ", e.detail.scrollLeft);
+      console.log("距离顶部距离： ", e.detail.scrollTop);
+      this.setData({
+        top: e.detail.scrollTop,
+        left: e.detail.scrollLeft,
+      })
     },
 
     getRect: function() {
@@ -101,6 +133,14 @@ Component({
         _this.data.scrollY = Math.abs(rect.top); //y坐标
       }).exec()
     },
+
+    cutImage: function(){
+      console.log("裁剪图片");
+      this.triggerEvent('cutimage', {
+        top: this.data.top, left: this.data.left, scale: this.data.Scale
+      });
+    }
+    
   }
 
 })

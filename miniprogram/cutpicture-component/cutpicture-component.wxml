@@ -1,8 +1,9 @@
 <!--cutpicture-component/cutpicture-component.wxml-->
 <view class='out-frame'>
 
-  <scroll-view id="scrollView" style='width: {{ frameWidth }}; height: {{ frameHeight }};background-color: yellow' scroll-y="true" scroll-x="true" bindtouchmove="scroll" bindtouchstart='scroll' bindtouchend='endTou' bindscroll="getDisdanceOfScroll">
-    <image id="image" src="{{ imageUrl }}" style='width: {{width}}px;height: {{height}}px; magrin: 0; display:block;' bindtouchmove="touch"></image>
+  <scroll-view id="scrollView" style='width: {{ frameWidth }}px; height: {{ frameHeight }}px;background-color: yellow' scroll-y="true" scroll-x="true" bindtouchmove="scroll" bindtouchstart='scroll' bindtouchend='endTou' bindscroll="getDisdanceOfScroll">
+    <image id="image" src="{{ imageUrl }}" style='width: {{width}}px;height: {{height}}px; magrin: 0; display:block;'></image>
   </scroll-view>
 
 </view>
+<button class="cut-button" bindtap='cutImage'>裁剪</button>

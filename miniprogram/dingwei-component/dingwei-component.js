@@ -147,14 +147,19 @@ Component({
                           sWidth: res.width,
                           sHeight: res.height
                         };
-                        that.triggerEvent('userclickcomponent', {
+                        // that.triggerEvent('userclickcomponent', {
+                        //   picPath: tempFilePaths,
+                        //   sInfo: sInfo_,
+                        //   locatInfo: that.data
+                        // });
+                        that.setData({
                           picPath: tempFilePaths,
                           sInfo: sInfo_,
-                          locatInfo: that.data
-                        });
+                        })
                         console.log("接下进入裁剪界面。");
                         that.setData({
                           ifCutPicture: true,
+                          sInfo_: sInfo_
                         })
                       }
                     })
@@ -220,7 +225,7 @@ Component({
       this.changePage(targetId);
     },
 
-    bindselectWebImage: function(e){
+    bindselectWebImage: function(e) {
       console.log("web-image-component组件点击", e.detail);
       this.setData({
         showWebPage: false
@@ -234,7 +239,18 @@ Component({
       this.setData({
         imageSrc: e.detail.picPath[0],
       })
+    },
+
+    cutImage: function(e) {
+      console.log("点击了裁剪按钮，向上传递数据");
+      console.log(e.detail);
+      this.triggerEvent('userclickcomponent', {
+        picPath: this.data.picPath,
+        sInfo: this.data.sInfo,
+        locatInfo: this.data,
+        cutInfo: e.detail,
+      });
     }
-    
+
   }
 })

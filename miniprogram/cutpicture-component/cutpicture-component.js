@@ -46,8 +46,8 @@ Component({
       console.log("frameHeight:", this.properties.frameHeight);
       var ffh = this.properties.frameHeight.slice(0, -3) * rpxTopx
       var ffw = this.properties.frameWidth.slice(0, -3) * rpxTopx
-      console.log(fh);
-      console.log(fw);
+      console.log(ffh);
+      console.log(ffw);
       this.setData({
         frameWidth: 0.95 * screenWidthPx,
         frameHeight: 0.95 * screenWidthPx * ffh / ffw

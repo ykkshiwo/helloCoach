@@ -19,6 +19,7 @@ Component({
     fontWeightkc: '',
     fontWeightqt: '',
     ifCutPicture: false,
+    notCutPic: true,
   }, // 私有数据，可用于模版渲染
 
   lifetimes: {
@@ -136,6 +137,13 @@ Component({
       console.log(e);
       var targetId = e.target.id;
       this.changePage(targetId);
+    },
+
+    hideTop: function(){
+      console.log("隐藏头部，为了解决iPhone上的bug")
+      this.setData({
+        notCutPic: false
+      })
     },
 
   }

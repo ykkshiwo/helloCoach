@@ -1,3 +1,7 @@
+const app = getApp();
+const screenWidthPx = app.globalData.screenWidthPx
+const rpxTopx = app.globalData.rpxTopx
+
 Component({
 
   behaviors: [],
@@ -28,6 +32,10 @@ Component({
   data: {
     firstAttach: true,
     ifCutPicture: false,
+    xpos: '',
+    ypos: '',
+    bgWidth: '',
+    bgHeight: '',
   },
 
   lifetimes: {
@@ -234,22 +242,39 @@ Component({
       this.triggerEvent('userclickcomponent', {
         picPath: e.detail.picPath,
         sInfo: e.detail.sInfo,
-        locatInfo: this.data
+        locatInfo: this.data,
+        cutInfo: e.detail.cutInfo,
       });
+      var top = e.detail.cutInfo.top
+      var left = e.detail.cutInfo.left
+      var timesOfCut = (this.properties.thisWidth.slice(0, -3) * rpxTopx) / (0.95 * screenWidthPx)
+      console.log("倍数为：", timesOfCut);
       this.setData({
         imageSrc: e.detail.picPath[0],
+        xpos: '-' + left * timesOfCut,
+        ypos: '-' + top * timesOfCut,
+        bgWidth: e.detail.cutInfo.baseWidth * e.detail.cutInfo.scale * timesOfCut,
+        bgHeight: e.detail.cutInfo.baseHeight * e.detail.cutInfo.scale * timesOfCut,
       })
+      console.log("图片框内的背景信息：", {
+        imageSrc: e.detail.picPath[0],
+        xpos: '-' + left * timesOfCut,
+        ypos: '-' + top * timesOfCut,
+        bgWidth: e.detail.cutInfo.baseWidth * e.detail.cutInfo.scale,
+        bgHeight: e.detail.cutInfo.baseHeight * e.detail.cutInfo.scale,
+      });
     },
 
     cutImage: function(e) {
       console.log("点击了裁剪按钮，向上传递数据");
       console.log(e.detail);
-      this.triggerEvent('userclickcomponent', {
-        picPath: this.data.picPath,
-        sInfo: this.data.sInfo,
-        locatInfo: this.data,
-        cutInfo: e.detail,
-      });
+
+      // this.triggerEvent('userclickcomponent', {
+      //   picPath: this.data.picPath,
+      //   sInfo: this.data.sInfo,
+      //   locatInfo: this.data,
+      //   cutInfo: e.detail,
+      // });
     }
 
   }

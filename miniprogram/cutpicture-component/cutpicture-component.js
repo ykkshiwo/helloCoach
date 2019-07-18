@@ -62,7 +62,7 @@ Component({
         var sw_ = fw;
         var sh_ = fw / sw * sh;
       }
-      console.log("经过放大或者缩小后的原图片尺寸：", sh_, sw_);
+      console.log("经过放大或者缩小后的图片尺寸：", sh_, sw_);
       this.setData({
         baseHeight: sh_,
         baseWidth: sw_,
@@ -137,7 +137,11 @@ Component({
     cutImage: function(){
       console.log("裁剪图片");
       this.triggerEvent('cutimage', {
-        top: this.data.top, left: this.data.left, scale: this.data.Scale
+        top: this.data.top, 
+        left: this.data.left, 
+        scale: this.data.Scale,
+        baseHeight: this.data.baseHeight,
+        baseWidth: this.data.baseWidth,
       });
     }
     

@@ -32,6 +32,11 @@ Component({
   methods: {
 
     backToIndexByImageUrl: function() {
+
+      this.triggerEvent('cutPicture', {
+        success: 1
+      });
+
       const that = this;
       console.log("点击网络图片，选择图片成功");
       var picPath = this.properties.imageUrl;
@@ -53,11 +58,24 @@ Component({
           that.setData({
             ifCutPicture: true,
             sInfo_: sInfo_,
+            picPath: [picPath],
           });
-          console.log("传递上来的数据：", that.properties.frameHeight, that.properties.frameWidth); 
+          console.log("传递上来的数据：", that.properties.frameHeight, that.properties.frameWidth);
         }
       });
     },
+
+    cutImage: function(e) {
+      console.log("网络素材中的裁剪组件点击裁剪");
+      this.triggerEvent('selectWebImage', {
+        picPath: this.data.picPath,
+        sInfo: this.data.sInfo_,
+        cutInfo: e.detail,
+      }, {
+        bubbles: true,
+        composed: true
+      });
+    }
 
   }
 

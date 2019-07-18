@@ -269,12 +269,39 @@ Component({
       console.log("点击了裁剪按钮，向上传递数据");
       console.log(e.detail);
 
-      // this.triggerEvent('userclickcomponent', {
-      //   picPath: this.data.picPath,
-      //   sInfo: this.data.sInfo,
-      //   locatInfo: this.data,
-      //   cutInfo: e.detail,
-      // });
+      this.setData({
+        ifCutPicture: false,
+      })
+
+      this.triggerEvent('userclickcomponent', {
+        picPath: this.data.picPath,
+        sInfo: this.data.sInfo,
+        locatInfo: this.data,
+        cutInfo: e.detail,
+      });
+
+      var top = e.detail.top
+      var left = e.detail.left
+      var timesOfCut = (this.properties.thisWidth.slice(0, -3) * rpxTopx) / (0.95 * screenWidthPx)
+      console.log("倍数为：", timesOfCut);
+      this.setData({
+        imageSrc: this.data.picPath,
+        xpos: '-' + left * timesOfCut,
+        ypos: '-' + top * timesOfCut,
+        bgWidth: e.detail.baseWidth * e.detail.scale * timesOfCut,
+        bgHeight: e.detail.baseHeight * e.detail.scale * timesOfCut,
+      })
+
+      // that.setData({
+      //   picPath: tempFilePaths,
+      //   sInfo: sInfo_,
+      // })
+      // console.log("接下进入裁剪界面。");
+      // that.setData({
+      //   ifCutPicture: true,
+      //   sInfo_: sInfo_
+      // })
+
     }
 
   }

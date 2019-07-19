@@ -36,6 +36,7 @@ Component({
   },
 
   lifetimes: {
+
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function() {
       console.log("裁剪组件执行。");
@@ -70,6 +71,7 @@ Component({
         width: sw_,
       })
     },
+    
     moved: function() {},
     detached: function() {},
   },

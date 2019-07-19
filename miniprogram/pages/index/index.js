@@ -34,10 +34,25 @@ Page({
 
   drawPictures: function(picArray, ctx) {
     console.log("开始绘制图片");
-    for (var i = 0; i < picArray.length; i++) { 
+
+    for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data;
-      ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
+
+      var sWidth = pic.cutInfo ? pic.sInfo.sWidth : 0;  //源图像的宽度px
+      var sHeight = pic.cutInfo ? pic.sInfo.sHeight : 0;  //源图像的高度px
+      //源图像与背景放大图片的倍数
+      var times = pic.cutInfo ? sWidth / pic.locatInfo.bgWidth : 0;
+      var drawX = pic.cutInfo ? pic.cutInfo.left * times : 0;
+      var drawY = pic.cutInfo ? pic.cutInfo.top * times : 0;
+      var drawWidth = pic.locatInfo.thisWidth.slice(0, -3) * times * rpxTopx;  //源图像上选择框的宽度px
+      var drawHeight = pic.locatInfo.thisHeight.slice(0, -3) * times * rpxTopx;  //源图像上选择框的高度px
+      console.log("绘制图像的基本信息：", sWidth, sHeight, times, drawX, drawY, drawWidth, drawHeight);
+
+      // ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
+      ctx.drawImage(pic.picPath[0], drawX, drawY, drawWidth, drawHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
+
     }
+
   },
 
   drawText: function(textArray, ctx) {

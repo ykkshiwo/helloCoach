@@ -38,11 +38,11 @@ Page({
     for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data;
 
-      var sWidth = pic.cutInfo ? pic.sInfo.sWidth : 0;  //源图像的宽度px
-      var sHeight = pic.cutInfo ? pic.sInfo.sHeight : 0;  //源图像的高度px
+      var sWidth = pic.sInfo.sWidth;  //源图像的宽度px
+      var sHeight = pic.sInfo.sHeight;  //源图像的高度px
       //源图像与背景放大图片的倍数
-      var times = pic.cutInfo ? sWidth / pic.locatInfo.bgWidth : 0;
-      var drawX = pic.cutInfo ? pic.cutInfo.left * times : 0;
+      var times = sWidth / pic.locatInfo.bgWidth;
+      var drawX = pic.cutInfo ? pic.cutInfo.left * times : 0; //这里错了
       var drawY = pic.cutInfo ? pic.cutInfo.top * times : 0;
       var drawWidth = pic.locatInfo.thisWidth.slice(0, -3) * times * rpxTopx;  //源图像上选择框的宽度px
       var drawHeight = pic.locatInfo.thisHeight.slice(0, -3) * times * rpxTopx;  //源图像上选择框的高度px

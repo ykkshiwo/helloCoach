@@ -33,8 +33,8 @@ Component({
     canSwiper: true,
     firstAttach: true,
     ifCutPicture: false,
-    xpos: '',
-    ypos: '',
+    xpos: '22',
+    ypos: '22',
     bgWidth: '',
     bgHeight: '',
   },
@@ -68,7 +68,7 @@ Component({
     forbidRoll: function(){
       console.log("触摸开始。")
       this.setData({
-        canSwiper: false,
+        // canSwiper: false,
       })
     },
 
@@ -282,13 +282,6 @@ Component({
 
       console.log("图片移动是否打开：", this.data.canSwiper);
 
-      this.triggerEvent('userclickcomponent', {
-        picPath: this.data.picPath,
-        sInfo: this.data.sInfo,
-        locatInfo: this.data,
-        cutInfo: e.detail,
-      });
-
       var top = e.detail.top
       var left = e.detail.left
       var timesOfCut = (this.properties.thisWidth.slice(0, -3) * rpxTopx) / (0.95 * screenWidthPx)
@@ -301,6 +294,12 @@ Component({
         bgHeight: e.detail.baseHeight * e.detail.scale * timesOfCut,
       });
 
+      setTimeout(function(){
+        this.setData({
+          toId: "toMe"
+        })
+      }, 800)
+
       console.log("裁剪图片后显示的信息：", {
         imageSrc: this.data.picPath[0],
         xpos: left * timesOfCut,
@@ -308,6 +307,13 @@ Component({
         bgWidth: e.detail.baseWidth * e.detail.scale * timesOfCut,
         bgHeight: e.detail.baseHeight * e.detail.scale * timesOfCut,
       })
+
+      this.triggerEvent('userclickcomponent', {
+        picPath: this.data.picPath,
+        sInfo: this.data.sInfo,
+        locatInfo: this.data,
+        cutInfo: e.detail,
+      });
 
     }
 

@@ -68,7 +68,7 @@ Component({
     forbidRoll: function(){
       console.log("触摸开始。")
       this.setData({
-        // canSwiper: false,
+        canSwiper: false,
       })
     },
 
@@ -76,7 +76,7 @@ Component({
       console.log('失去焦点父组件被触发');
       this.setData({
         valueText: e.detail.inputValue,
-        // inputShow: false,
+        inputShow: false,
       })
     },
 
@@ -279,6 +279,8 @@ Component({
         ifCutPicture: false,
         canSwiper: true
       })
+
+      console.log("图片移动是否打开：", this.data.canSwiper);
 
       this.triggerEvent('userclickcomponent', {
         picPath: this.data.picPath,

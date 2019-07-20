@@ -42,13 +42,12 @@ Page({
       var sHeight = pic.sInfo.sHeight;  //源图像的高度px
       //源图像与背景放大图片的倍数
       var times = sWidth / pic.locatInfo.bgWidth;
-      var drawX = pic.cutInfo ? pic.cutInfo.left * times : 0; //这里错了
-      var drawY = pic.cutInfo ? pic.cutInfo.top * times : 0;
+      var drawX = pic.cutInfo ? Math.abs( pic.locatInfo.xpos ) * times : 0; 
+      var drawY = pic.cutInfo ? Math.abs( pic.locatInfo.ypos ) * times : 0;
       var drawWidth = pic.locatInfo.thisWidth.slice(0, -3) * times * rpxTopx;  //源图像上选择框的宽度px
       var drawHeight = pic.locatInfo.thisHeight.slice(0, -3) * times * rpxTopx;  //源图像上选择框的高度px
       console.log("绘制图像的基本信息：", sWidth, sHeight, times, drawX, drawY, drawWidth, drawHeight);
 
-      // ctx.drawImage(pic.picPath[0], 0, 0, pic.sInfo.sWidth, pic.sInfo.sHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
       ctx.drawImage(pic.picPath[0], drawX, drawY, drawWidth, drawHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
 
     }

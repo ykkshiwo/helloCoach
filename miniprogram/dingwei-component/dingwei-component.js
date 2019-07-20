@@ -30,6 +30,7 @@ Component({
   },
 
   data: {
+    canSwiper: true,
     firstAttach: true,
     ifCutPicture: false,
     xpos: '',
@@ -63,6 +64,13 @@ Component({
   },
 
   methods: {
+
+    forbidRoll: function(){
+      console.log("触摸开始。")
+      this.setData({
+        // canSwiper: false,
+      })
+    },
 
     drawOne: function(e) {
       console.log('失去焦点父组件被触发');
@@ -163,12 +171,10 @@ Component({
                         that.setData({
                           picPath: tempFilePaths,
                           sInfo: sInfo_,
-                        })
-                        console.log("接下进入裁剪界面。");
-                        that.setData({
                           ifCutPicture: true,
                           sInfo_: sInfo_
-                        })
+                        });
+                        console.log("接下进入裁剪界面。");
                       }
                     })
                   }
@@ -251,15 +257,15 @@ Component({
       console.log("倍数为：", timesOfCut);
       this.setData({
         imageSrc: e.detail.picPath[0],
-        xpos: '-' + left * timesOfCut,
-        ypos: '-' + top * timesOfCut,
+        xpos: left * timesOfCut,
+        ypos: top * timesOfCut,
         bgWidth: e.detail.cutInfo.baseWidth * e.detail.cutInfo.scale * timesOfCut,
         bgHeight: e.detail.cutInfo.baseHeight * e.detail.cutInfo.scale * timesOfCut,
       })
       console.log("图片框内的背景信息：", {
         imageSrc: e.detail.picPath[0],
-        xpos: '-' + left * timesOfCut,
-        ypos: '-' + top * timesOfCut,
+        xpos: left * timesOfCut,
+        ypos: top * timesOfCut,
         bgWidth: e.detail.cutInfo.baseWidth * e.detail.cutInfo.scale,
         bgHeight: e.detail.cutInfo.baseHeight * e.detail.cutInfo.scale,
       });
@@ -271,6 +277,7 @@ Component({
 
       this.setData({
         ifCutPicture: false,
+        canSwiper: true
       })
 
       this.triggerEvent('userclickcomponent', {
@@ -285,22 +292,20 @@ Component({
       var timesOfCut = (this.properties.thisWidth.slice(0, -3) * rpxTopx) / (0.95 * screenWidthPx)
       console.log("倍数为：", timesOfCut);
       this.setData({
-        imageSrc: this.data.picPath,
-        xpos: '-' + left * timesOfCut,
-        ypos: '-' + top * timesOfCut,
+        imageSrc: this.data.picPath[0],
+        xpos: left * timesOfCut,
+        ypos: top * timesOfCut,
+        bgWidth: e.detail.baseWidth * e.detail.scale * timesOfCut,
+        bgHeight: e.detail.baseHeight * e.detail.scale * timesOfCut,
+      });
+
+      console.log("裁剪图片后显示的信息：", {
+        imageSrc: this.data.picPath[0],
+        xpos: left * timesOfCut,
+        ypos: top * timesOfCut,
         bgWidth: e.detail.baseWidth * e.detail.scale * timesOfCut,
         bgHeight: e.detail.baseHeight * e.detail.scale * timesOfCut,
       })
-
-      // that.setData({
-      //   picPath: tempFilePaths,
-      //   sInfo: sInfo_,
-      // })
-      // console.log("接下进入裁剪界面。");
-      // that.setData({
-      //   ifCutPicture: true,
-      //   sInfo_: sInfo_
-      // })
 
     }
 

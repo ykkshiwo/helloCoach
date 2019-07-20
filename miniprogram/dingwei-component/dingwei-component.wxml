@@ -6,9 +6,13 @@
   <!-- <image wx:if="{{ !isText }}" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }};" mode="scaleToFill" src="{{ imageSrc }}" bindtap='userClickcomponent' /> -->
 
   <!-- 使用背景图片来代替，可以很好的控制大小和位置，展现出裁剪后的模样 -->
-  <view wx:if="{{ !isText }}" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; background-image: url( {{ imageSrc }} ); background-color: yellow; height: {{ thisHeight }}; width: {{ thisWidth }}; background-position: {{ xpos }}px {{ ypos }}px; background-size: {{ bgWidth }}px {{ bgHeight }}px; background-repeat: no-repeat"
+  <!-- <view wx:if="{{ !isText }}" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; background-image: url( {{ imageSrc }} ); background-color: yellow; height: {{ thisHeight }}; width: {{ thisWidth }}; background-position: {{ xpos }}px {{ ypos }}px; background-size: {{ bgWidth }}px {{ bgHeight }}px; background-repeat: no-repeat"
     bindtap='userClickcomponent'>
-  </view>
+  </view> -->
+
+      <scroll-view wx:if="{{ !isText }}" style='position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; height: {{ thisHeight }}; width: {{ thisWidth }};' scroll-top="{{ ypos }}" scroll-left="{{ xpos }}" scroll-y="{{ canSwiper }}" scroll-x="{{ canSwiper }}"  bindtap='userClickcomponent' bindtouchstart='forbidRoll'>
+    <image src="{{ imageSrc }}" style='width: {{bgWidth}}px;height: {{bgHeight}}px; magrin: 0; display:block;'></image>
+  </scroll-view>
 
   <view wx:if="{{ isText }}" bindtap='userClickcomponent'>
     <dingwei-component-input wx:if="{{ inputShow }}" bindneeddraw='drawOne' this-top1="{{ thisTop1 }}" this-left1="{{ thisLeft1 }}" this-height1="{{ thisHeight1 }}" this-width1="{{ thisWidth1 }}" this-input="{{ valueText }}"></dingwei-component-input>

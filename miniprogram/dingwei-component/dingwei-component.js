@@ -39,6 +39,20 @@ Component({
     bgHeight: '',
   },
 
+  observers: { //观察者：属性监听
+
+    'xpos, ypos': function (xpos, ypos) {
+      var that = this;
+      console.log("有数据发生异动", ypos, xpos);
+      setTimeout(function(){
+        that.setData({
+          toId: "toMe"
+        })
+      }, 800)
+    }
+
+  },
+
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function() {
@@ -294,11 +308,11 @@ Component({
         bgHeight: e.detail.baseHeight * e.detail.scale * timesOfCut,
       });
 
-      setTimeout(function(){
-        this.setData({
-          toId: "toMe"
-        })
-      }, 800)
+      // setTimeout(function(){
+      //   this.setData({
+      //     toId: "toMe"
+      //   })
+      // }, 800)
 
       console.log("裁剪图片后显示的信息：", {
         imageSrc: this.data.picPath[0],

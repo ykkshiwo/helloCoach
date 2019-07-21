@@ -3,14 +3,8 @@
   <view class="dingwei" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }}; font-size: {{ thisHeight }}" bindtap='userClickcomponent'> {{ valueText }}
   </view>
 
-  <!-- <image wx:if="{{ !isText }}" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; width: {{ thisWidth }}; height: {{ thisHeight }};" mode="scaleToFill" src="{{ imageSrc }}" bindtap='userClickcomponent' /> -->
-
-  <!-- 使用背景图片来代替，可以很好的控制大小和位置，展现出裁剪后的模样 -->
-  <!-- <view wx:if="{{ !isText }}" style="position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; background-image: url( {{ imageSrc }} ); background-color: yellow; height: {{ thisHeight }}; width: {{ thisWidth }}; background-position: {{ xpos }}px {{ ypos }}px; background-size: {{ bgWidth }}px {{ bgHeight }}px; background-repeat: no-repeat"
-    bindtap='userClickcomponent'>
-  </view> -->
-
-      <scroll-view wx:if="{{ !isText }}" style='position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; height: {{ thisHeight }}; width: {{ thisWidth }};'  scroll-y="{{ canSwiper }}" scroll-x="{{ canSwiper }}" bindtap='userClickcomponent' bindtouchstart='forbidRoll' scroll-into-view='{{ toId }}'>
+  <scroll-view wx:if="{{ !isText }}" style='position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; height: {{ thisHeight }}; width: {{ thisWidth }};' scroll-y="{{ canSwiper }}" scroll-x="{{ canSwiper }}" bindtap='userClickcomponent' bindtouchstart='forbidRoll'
+    scroll-into-view='{{ toId }}'>
     <image src="{{ imageSrc }}" style='width: {{bgWidth}}px;height: {{bgHeight}}px; magrin: 0; display:block;'></image>
     <view id="toMe" style="width: 10px; height: 10px; background-color: yellow; position: absolute; left: {{ xpos }}px; top: {{ ypos }}px"></view>
   </scroll-view>

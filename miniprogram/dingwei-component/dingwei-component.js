@@ -40,17 +40,15 @@ Component({
   },
 
   observers: { //观察者：属性监听
-
-    'xpos, ypos': function (xpos, ypos) {
+    'xpos, ypos': function(xpos, ypos) {
       var that = this;
       console.log("有数据发生异动", ypos, xpos);
-      setTimeout(function(){
+      setTimeout(function() {
         that.setData({
           toId: "toMe"
         })
-      }, 800)
+      }, 800);
     }
-
   },
 
   lifetimes: {
@@ -74,15 +72,25 @@ Component({
 
   pageLifetimes: {
     // 组件所在页面的生命周期函数
-    show: function() {},
+    show: function() {
+      // 页面被展示
+      console.log("图片定位组件展现······");
+    },
+    hide: function() {
+      // 页面被隐藏
+      console.log("图片定位组件隐藏······");
+    },
+    resize: function(size) {
+      // 页面尺寸变化
+    }
   },
 
   methods: {
 
-    forbidRoll: function(){
+    forbidRoll: function() {
       console.log("触摸开始。")
       this.setData({
-        // canSwiper: false,
+        canSwiper: false,
       })
     },
 
@@ -256,7 +264,8 @@ Component({
     bindselectWebImage: function(e) {
       console.log("web-image-component组件点击", e.detail);
       this.setData({
-        showWebPage: false
+        showWebPage: false,
+        canSwiper: true
       })
       console.log("云端图片页面被关闭");
       this.triggerEvent('userclickcomponent', {

@@ -7,6 +7,7 @@ Component({
     showWebpage: Boolean,
     frameHeight: String,
     frameWidth: String,
+    fromBackground: String,
   },
   data: {
     inputValue: '',
@@ -143,7 +144,7 @@ Component({
       console.log("隐藏头部，为了解决iPhone上的bug")
       this.setData({
         notCutPic: false
-      })
+      });
     },
 
   }

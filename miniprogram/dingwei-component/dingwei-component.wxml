@@ -5,8 +5,8 @@
 
   <scroll-view wx:if="{{ !isText }}" style='position: fixed; top:{{ thisTop }}; left:{{ thisLeft }}; height: {{ thisHeight }}; width: {{ thisWidth }};' scroll-y="{{ canSwiper }}" scroll-x="{{ canSwiper }}" bindtap='userClickcomponent' bindtouchstart='forbidRoll'
     scroll-into-view='{{ toId }}'>
-    <image src="{{ imageSrc }}" style='width: {{bgWidth}}px;height: {{bgHeight}}px; magrin: 0; display:block;'></image>
-    <view id="toMe" style="width: 10px; height: 10px; background-color: yellow; position: absolute; left: {{ xpos }}px; top: {{ ypos }}px"></view>
+    <image src="{{ imageSrc }}" style='width: {{bgWidth}}px;height: {{bgHeight}}px; magrin: 0; display:block; background-color: rgba(121,135,126,0.5)'></image>
+    <view id="toMe" style="width: 8px; height: 8px; background-color: yellow; position: absolute; left: {{ xpos }}px; top: {{ ypos }}px"></view>
   </scroll-view>
 
   <view wx:if="{{ isText }}" bindtap='userClickcomponent'>

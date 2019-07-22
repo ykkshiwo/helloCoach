@@ -6,6 +6,7 @@ Component({
     imageUrl: String,
     frameHeight: String,
     frameWidth: String,
+    fromBackground: String,
   },
   data: {
     inputValue: '',
@@ -48,18 +49,28 @@ Component({
             sWidth: res.width,
             sHeight: res.height
           };
-          // that.triggerEvent('selectWebImage', {
-          //   picPath: [picPath],
-          //   sInfo: sInfo_,
-          // }, {
-          //   bubbles: true,
-          //   composed: true
-          // });
           that.setData({
-            ifCutPicture: true,
             sInfo_: sInfo_,
             picPath: [picPath],
           });
+          if (that.properties.fromBackground) {
+            console.log("这是背景图片选择，不需要裁剪。")
+            that.setData({
+              ifCutPicture: false,
+            });
+            that.triggerEvent('selectWebImage', {
+              picPath: that.data.picPath,
+              sInfo: that.data.sInfo_,
+            }, {
+              bubbles: true,
+              composed: true
+            });
+          } else {
+            console.log("这不是背景图片选择，需要裁剪。")
+            that.setData({
+              ifCutPicture: true,
+            })
+          }
           console.log("传递上来的数据：", that.properties.frameHeight, that.properties.frameWidth);
         }
       });

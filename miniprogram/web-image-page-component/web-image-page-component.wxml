@@ -10,7 +10,7 @@
     <scroll-view scroll-y="{{ true }}" style="background-color: rgba(255,192,228, 0.2);border-top: 1px solid rgba(255,192,228, 0.5); height: 100%;">
       <view class='scroll-main'>
         <block wx:for="{{webImagesUrl}}" wx:key="fileID">
-          <web-image-component id="{{ item.fileID }}" image-url="{{ item.tempFileURL }}" frame-height="{{ frameHeight }}" frame-width="{{ frameWidth }}" bindcutPicture = "hideTop"></web-image-component>
+          <web-image-component id="{{ item.fileID }}" image-url="{{ item.tempFileURL }}" frame-height="{{ frameHeight }}" frame-width="{{ frameWidth }}" bindcutPicture = "hideTop" from-background="{{ fromBackground }}"></web-image-component>
         </block>
       </view>
     </scroll-view>

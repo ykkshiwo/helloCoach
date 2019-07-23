@@ -2,7 +2,6 @@
   "cloud": true,
   "pages": [
     "pages/index/index",
-    "pages/screenshot/screenshot",
     "pages/homepage/homepage"
   ],
   "window": {

@@ -74,11 +74,9 @@ Component({
     // 组件所在页面的生命周期函数
     show: function() {
       // 页面被展示
-      console.log("图片定位组件展现······");
     },
     hide: function() {
       // 页面被隐藏
-      console.log("图片定位组件隐藏······");
     },
     resize: function(size) {
       // 页面尺寸变化
@@ -98,8 +96,15 @@ Component({
       console.log('失去焦点父组件被触发');
       this.setData({
         valueText: e.detail.inputValue,
-        inputShow: false,
-      })
+        // inputShow: false,
+      });
+      this.triggerEvent('needdraw', {
+        height: this.properties.thisHeight,
+        width: this.properties.thisWidth,
+        top: this.properties.thisTop,
+        left: this.properties.thisLeft,
+        inputValue: e.detail.inputValue
+      }); //到底哪里出错了，本来可以在input组件直接上传的。
     },
 
     willDraw: function() {

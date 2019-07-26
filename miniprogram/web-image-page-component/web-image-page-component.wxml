@@ -7,7 +7,7 @@
       <view id="其他图片" class='top1' style="border-bottom-width: {{ borderBottomWidthqt }}; font-weight: {{ fontWeightqt }};" bindtap='clickChangeImagesPage'>其他图片</view>
     </view>
 
-    <scroll-view scroll-y="{{ true }}" style="background-color: rgba(255,192,228, 0.2);border-top: 1px solid rgba(255,192,228, 0.5); height: 100%;">
+    <scroll-view scroll-y="{{ true }}" style="background-color: rgba(255,192,228, 0.2);border-top: 1px solid rgba(255,192,228, 0.5); height: 90%;">
       <view class='scroll-main'>
         <block wx:for="{{webImagesUrl}}" wx:key="fileID">
           <web-image-component id="{{ item.fileID }}" image-url="{{ item.tempFileURL }}" frame-height="{{ frameHeight }}" frame-width="{{ frameWidth }}" bindcutPicture = "hideTop" from-background="{{ fromBackground }}"></web-image-component>

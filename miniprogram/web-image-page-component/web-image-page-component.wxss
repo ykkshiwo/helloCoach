@@ -6,6 +6,10 @@
   top: 0;
   left: 0;
   z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .top{
@@ -40,5 +44,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
+  padding-bottom: 28rpx;
   /* align-content: space-around; */
 }

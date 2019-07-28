@@ -19,10 +19,7 @@
   <!-- 以下部分为排版组件 -->
 
   <import src="./models.wxml" />
-  <!-- <template is="item3" data="{{...item}}"> -->
-  <!-- </template> -->
-
-  <template is="item3" data="{{...dingweiData}}"/>
+  <template is="item2" data="{{...dingweiData}}"/>
 
   <!-- ----------------- -->
 </view>

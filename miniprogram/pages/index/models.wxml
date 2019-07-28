@@ -1,0 +1,23 @@
+<template name="item1">
+  <view style="color: yellow; position: fixed; top: 10px; left: 10px;">hello</view>
+</template>
+
+<template name="item2">
+  <dingwei-component wx:if="{{ hide }}" id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="3" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="850rpx" this-left="80rpx" this-width="600rpx" this-height="100rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
+
+  <dingwei-component wx:if="{{ hide }}" id="5" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
+</template>
+
+<template name="item3">
+  <view style="color: yellow; position: fixed; top: 10px; left: 10px;">hello3 {{index}}: {{msg}} </view>
+  <dingwei-component wx:if="{{ hide }}" id="5" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
+    <view wx:if="{{ hide }}" style="color: yellow; position: fixed; top: 10px; left: 10px;">
+    <text> {{index}}: {{msg}} </text>
+    <text> Time: {{time}} </text>
+    <button bindtap='hideT'>ttt</button>
+  </view>
+</template>

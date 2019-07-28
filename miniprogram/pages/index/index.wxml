@@ -16,14 +16,13 @@
     <web-image-page-component bindselectWebImage='bindselectWebImage' from-background="{{ true }}"></web-image-page-component>
   </block>
 
-<!-- 以下部分为排版组件 -->
-  <dingwei-component wx:if="{{ hide }}" id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
+  <!-- 以下部分为排版组件 -->
 
-  <dingwei-component wx:if="{{ hide }}" id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
+  <import src="./models.wxml" />
+  <!-- <template is="item3" data="{{...item}}"> -->
+  <!-- </template> -->
 
-  <dingwei-component wx:if="{{ hide }}" id="3" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="850rpx" this-left="80rpx" this-width="600rpx" this-height="100rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
+  <template is="item3" data="{{...dingweiData}}"/>
 
-  <dingwei-component wx:if="{{ hide }}" id="5" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="1000rpx" this-left="80rpx" this-width="90rpx" this-height="30rpx" input-show="{{ inputShow }}" is-text="{{ true }}" value-text="你好"></dingwei-component>
-
-<!-- ----------------- -->
+  <!-- ----------------- -->
 </view>

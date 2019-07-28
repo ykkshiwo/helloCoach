@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "dingwei-component": "../../dingwei-component/dingwei-component",
-    "web-image-page-component": "../../web-image-page-component/web-image-page-component"
+    "web-image-page-component": "../../web-image-page-component/web-image-page-component",
+    "testC": "../../testC/testC"
   }
 }

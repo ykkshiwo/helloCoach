@@ -2,7 +2,8 @@
   "cloud": true,
   "pages": [
     "pages/index/index",
-    "pages/homepage/homepage"
+    "pages/homepage/homepage",
+    "pages/choosemodel/choosemodel"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -11,11 +11,11 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    inputShow: false, //初始状态input不显示
+    // inputShow: false, //初始状态input不显示
     picArray: [],
     textArray: [],
     temPathArray: [],
-    hide: true,
+    // hide: true,
     canvasHeight: '',
     canvasShow: true,
     canvasLeft: "750rpx",
@@ -24,11 +24,37 @@ Page({
     showWebPage: false,
     nowArrayTask: 0,
     needTask: 0,
+    model: 'item3',
+    dingweiData: {
+      msg: 'this is a template',
+      time: '2016-09-15',
+      hide: true,
+      index: 0,
+      inputShow: false,
+    }
+  },
+
+  hideT: function() {
+    var item_ = this.data.dingweiData;
+    console.log(item_);
+    var itemG = {
+      hide: item_.hide,
+      msg: 'ssssss',
+      index: item_.index,
+      time: item_.time
+    }
+    console.log(itemG);
+    this.setData({
+      dingweiData: itemG
+    })
   },
 
   hideComponent: function() {
     this.setData({
-      hide: !this.data.hide,
+      item: {
+        hide: !this.data.hide,
+      }
+      // hide: !this.data.hide,
     })
   },
 
@@ -38,14 +64,14 @@ Page({
     for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data;
 
-      var sWidth = pic.sInfo.sWidth;  //源图像的宽度px
-      var sHeight = pic.sInfo.sHeight;  //源图像的高度px
+      var sWidth = pic.sInfo.sWidth; //源图像的宽度px
+      var sHeight = pic.sInfo.sHeight; //源图像的高度px
       //源图像与背景放大图片的倍数
       var times = sWidth / pic.locatInfo.bgWidth;
-      var drawX = pic.cutInfo ? Math.abs( pic.locatInfo.xpos ) * times : 0; 
-      var drawY = pic.cutInfo ? Math.abs( pic.locatInfo.ypos ) * times : 0;
-      var drawWidth = pic.locatInfo.thisWidth.slice(0, -3) * times * rpxTopx;  //源图像上选择框的宽度px
-      var drawHeight = pic.locatInfo.thisHeight.slice(0, -3) * times * rpxTopx;  //源图像上选择框的高度px
+      var drawX = pic.cutInfo ? Math.abs(pic.locatInfo.xpos) * times : 0;
+      var drawY = pic.cutInfo ? Math.abs(pic.locatInfo.ypos) * times : 0;
+      var drawWidth = pic.locatInfo.thisWidth.slice(0, -3) * times * rpxTopx; //源图像上选择框的宽度px
+      var drawHeight = pic.locatInfo.thisHeight.slice(0, -3) * times * rpxTopx; //源图像上选择框的高度px
       console.log("绘制图像的基本信息：", sWidth, sHeight, times, drawX, drawY, drawWidth, drawHeight);
 
       ctx.drawImage(pic.picPath[0], drawX, drawY, drawWidth, drawHeight, pic.locatInfo.thisLeft.slice(0, -3) * rpxTopx, pic.locatInfo.thisTop.slice(0, -3) * rpxTopx, pic.locatInfo.thisWidth.slice(0, -3) * rpxTopx, pic.locatInfo.thisHeight.slice(0, -3) * rpxTopx);
@@ -215,8 +241,22 @@ Page({
 
   hideAllcomponent: function() {
     console.log("首先最外层的捕获事件被触发,将文字输入组件input隐藏。");
+    var item_ = this.data.dingweiData;
+    console.log(item_);
+    var itemG = {
+      hide: item_.hide,
+      msg: item_.msg,
+      index: item_.index,
+      time: item_.time,
+      inputShow: false,
+    }
+    console.log(itemG);
     this.setData({
-      inputShow: false, //点击定位组件时父组件先将所有的定位组件的input关闭
+      dingweiData: itemG
+    })
+    this.setData({
+      dingweiData: itemG
+      // inputShow: false, //点击定位组件时父组件先将所有的定位组件的input关闭
     });
   },
 
@@ -378,11 +418,10 @@ Page({
 
   testFunction: function() {
     var idArrayFromWeb = this.getIdArrayFromWeb(this.data.picArray);
-    if (this.data.needTask == 0){
+    if (this.data.needTask == 0) {
       console.log("没有从云端选择图片");
       this.startDraw();
-    }
-    else{
+    } else {
       this.startDownloadImages(idArrayFromWeb, this.data.picArray);
       this.startWhenDownloadSuccess();
     }

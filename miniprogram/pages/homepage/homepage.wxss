@@ -7,7 +7,7 @@
 }
 
 .frame{
-  /* background-color: yellowgreen; */
+  background-color: #31303e;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -44,4 +44,8 @@
   background-color: yellow;
   height: 100px;
   width: 100px;
+}
+
+.nick-name{
+  color: yellow;
 }

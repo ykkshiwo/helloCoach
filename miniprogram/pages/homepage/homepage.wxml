@@ -7,7 +7,10 @@
     <image src="./hellocoach.png" mode='aspectFit' style="height: 26px; width: 70px;"></image>
   </view>
   <!-- <view class='test'></view> -->
-  <image src="./loginbutton.png" mode='aspectFit' style="width: 150px;"></image>
-  <open-data type="userAvatarUrl"></open-data>
-  <open-data class="nick-name" type="userNickName"></open-data>
+  <image class="hello" src="./hellocoach1.png" mode='widthFix'></image>
+  <!-- <open-data class="nick-name" type="userNickName"></open-data> -->
+  <view class="line"></view>
+  <view class="user-avatar-url">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
 </view>

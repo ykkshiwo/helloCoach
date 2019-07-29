@@ -47,5 +47,38 @@
 }
 
 .nick-name{
+  color: white;
+}
+
+.line{
   color: yellow;
+  position: fixed;
+  bottom: 120rpx;
+  right:0rpx;
+  left: 100rpx;
+  height: 1rpx;
+  background-color: #3b3b47;
+  border: 1px solid #3b3b47;
+  box-shadow: 0 -5px 8px -7px yellow;
+}
+
+.user-avatar-url{
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  bottom: 70rpx;
+  right: 70rpx;
+  border: 2px solid #ffe852;
+  border-radius: 50%;
+  overflow:hidden;
+}
+
+.hello{
+  position: fixed;
+  width: 55px;
+  bottom: 126rpx;
+  left: 70rpx;
+  /* border: 1px solid yellow; */
+  display: block;
+  padding: 0px;
 }

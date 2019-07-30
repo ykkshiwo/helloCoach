@@ -2,9 +2,18 @@
 <view class="frame">
   <view class="frame-top-part">
     <view class='white-frame'>
-      <image src="./logo.png" mode='aspectFit' style="width: 68%" animation="{{lAnimate}}"></image>
+      <view class="round-one">
+        <view class="round-one-two">
+        
+        </view>
+        <!-- <view class="round-two">
+          <view class="round">
+            <button class="border">hello</button>
+          </view>
+        </view> -->
+
+      </view>
     </view>
-    <image src="./hellocoach.png" mode='aspectFit' style="height: 26px; width: 70px;"></image>
   </view>
   <!-- <view class='test'></view> -->
   <image class="hello" src="./hellocoach1.png" mode='widthFix'></image>

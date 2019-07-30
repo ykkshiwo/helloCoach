@@ -1,12 +1,13 @@
 /* miniprogram/pages/homepage/homepage.wxss */
-.background-image{
+
+.background-image {
   position: fixed;
   z-index: 1;
   width: 100%;
   height: 100vh;
 }
 
-.frame{
+.frame {
   background-color: #31303e;
   height: 100vh;
   width: 100%;
@@ -18,43 +19,89 @@
   z-index: 120;
 }
 
-.frame-top-part{
+.frame-top-part {
   width: 100%;
-  /* background-color: rgba(6, 6, 6, 0.8); */
-  margin-top: 60px;
+  margin-top: 88px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  /* border: 1px solid red; */
 }
 
-.white-frame{
-  background-color: white;
-  border-radius: 12px;
-  height: 90px;
-  width: 90px;
-  box-shadow: 3px 3px 8px 1px rgba(6, 6, 6, 0.28) inset;
+.white-frame {
+  /* border: 1px solid #004629; */
+  height: 200px;
+  width: 200px;
+  /* box-shadow: 3px 3px 8px 1px rgba(6, 6, 6, 0.28) inset; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.test{
+.round-one {
+  width: 190px;
+  height: 190px;
+  /* background: linear-gradient(to bottom right, #ffe852 , #ffe852d5, #31303e, rgba(49, 48, 62, 0.932)); */
+  background: linear-gradient(to bottom right, #ffe852 , #31303e);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.round-one-two{
+  background: #31303e;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.round-two {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 170px;
+  top: 10px;
+  left: 10px;
+  border: 3px solid #ffe852;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.round {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 139px;
+  height: 139px;
+  box-sizing: border-box;
+  top: 10px;
+  left: 10px;
+  /* background-color: #ffe852; */
+  border-radius: 50%;
+}
+
+.test {
   background-color: yellow;
   height: 100px;
   width: 100px;
 }
 
-.nick-name{
+.nick-name {
   color: white;
 }
 
-.line{
+.line {
   color: yellow;
   position: fixed;
   bottom: 120rpx;
-  right:0rpx;
+  right: 0rpx;
   left: 100rpx;
   height: 1rpx;
   background-color: #3b3b47;
@@ -62,7 +109,7 @@
   box-shadow: 0 -5px 8px -7px yellow;
 }
 
-.user-avatar-url{
+.user-avatar-url {
   width: 100rpx;
   height: 100rpx;
   position: fixed;
@@ -70,10 +117,10 @@
   right: 70rpx;
   border: 2px solid #ffe852;
   border-radius: 50%;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.hello{
+.hello {
   position: fixed;
   width: 55px;
   bottom: 126rpx;

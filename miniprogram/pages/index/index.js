@@ -24,7 +24,7 @@ Page({
     showWebPage: false,
     nowArrayTask: 0,
     needTask: 0,
-    model: 'item3',
+    model: 'model_1',
     dingweiData: {
       msg: 'this is a template',
       time: '2016-09-15',

@@ -103,15 +103,25 @@
 }
 
 .line {
-  color: yellow;
   position: fixed;
   bottom: 120rpx;
   right: 0rpx;
   left: 100rpx;
   height: 1rpx;
   background-color: #3b3b47;
-  border-top: 1px solid #3b3b47;
-  box-shadow: 0 -5px 8px -7px yellow;
+  border-bottom: 1px solid #3b3b47;
+  /* box-shadow: 0 -5px 8px -7px yellow; */
+  padding: 0px;
+}
+
+.location{
+  color: white;
+  font-size: 13px;
+  position: relative;
+  top: -13px;
+  left: -30rpx;
+  padding: 0px;
+  /* border: 1px solid #ffe852; */
 }
 
 .user-avatar-url {

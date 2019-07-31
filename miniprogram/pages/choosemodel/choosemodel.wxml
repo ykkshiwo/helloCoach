@@ -1,2 +1,5 @@
 <!--miniprogram/pages/choosemodel/choosemodel.wxml-->
 <text>miniprogram/pages/choosemodel/choosemodel.wxml</text>
+<view class="item" id="model_1" bindtap="toIndex">model-1</view>
+<view class="item" id="model_2" bindtap="toIndex">model-2</view>
+<view class="item" id="model_3" bindtap="toIndex">model-3</view>

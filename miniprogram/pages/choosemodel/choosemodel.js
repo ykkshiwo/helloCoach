@@ -8,6 +8,13 @@ Page({
 
   },
 
+  toIndex: function(e){
+    console.log(e.target.id);
+    wx.navigateTo({
+      url: '../index/index?model=' + e.target.id,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

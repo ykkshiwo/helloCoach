@@ -6,7 +6,25 @@ Page({
    */
   data: {
     text: "Page animation",
-    animation: ''
+    animation: '',
+    whichGym: "Where are you?",
+  },
+
+  getGymName: function(){
+    const that = this;
+    wx.chooseLocation({
+      success: function(res) {
+        that.setData({
+          whichGym: res.name,
+        })
+      },
+    })
+  },
+
+  toChooseModel: function(){
+    wx.redirectTo({
+      url: '../choosemodel/choosemodel?id=1'
+    })
   },
 
   /**

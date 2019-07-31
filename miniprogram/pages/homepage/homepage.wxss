@@ -40,6 +40,11 @@
   align-items: center;
 }
 
+.do{
+  width: 420rpx;
+  height: 420rpx;
+}
+
 .round-one {
   width: 190px;
   height: 190px;
@@ -105,7 +110,7 @@
   left: 100rpx;
   height: 1rpx;
   background-color: #3b3b47;
-  border: 1px solid #3b3b47;
+  border-top: 1px solid #3b3b47;
   box-shadow: 0 -5px 8px -7px yellow;
 }
 

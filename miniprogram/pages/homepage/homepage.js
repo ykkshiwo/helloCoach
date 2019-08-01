@@ -10,8 +10,40 @@ Page({
     whichGym: "Where are you?",
   },
 
-  login: function(){
-    console.log("用户登入···")
+  getInfoOfUser: function(){
+    console.log("用户登入···");
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        console.log(res.authSetting);
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: res => {
+              console.log(res);
+            }
+          })
+        }else{
+          console.log("没有被授权，发起请求。");
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              console.log("sadasdas")
+              wx.getUserInfo({
+                success: res => {
+                  console.log(res);
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+    // wx.cloud.callFunction({
+    //   name: 'getUserOpenId',
+    //   complete: res => {
+    //     console.log('callFunction test result: ', res)
+    //   }
+    // })
   },
 
   getGymName: function(){

@@ -9,7 +9,7 @@
   <view class="line">
     <text class="location" bindtap="getGymName">{{ whichGym }}</text>
   </view>
-  <view class="user-avatar-url">
+  <view class="user-avatar-url" bindtap="getInfoOfUser">
     <open-data type="userAvatarUrl"></open-data>
   </view>
 </view>

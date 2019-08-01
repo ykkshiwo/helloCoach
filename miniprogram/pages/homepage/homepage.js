@@ -8,10 +8,13 @@ Page({
     text: "Page animation",
     animation: '',
     whichGym: "Where are you?",
+    haveLogin: false,
+    userImageUrl: "",
   },
 
-  getInfoOfUser: function(){
+  getInfoOfUser: function() {
     console.log("用户登入···");
+    const that = this;
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -20,20 +23,16 @@ Page({
           wx.getUserInfo({
             success: res => {
               console.log(res);
+              that.setData({
+                userImageUrl: res.userInfo.avatarUrl,
+                haveLogin: true,
+              })
             }
           })
         }else{
-          console.log("没有被授权，发起请求。");
-          wx.authorize({
-            scope: 'scope.userInfo',
-            success() {
-              console.log("sadasdas")
-              wx.getUserInfo({
-                success: res => {
-                  console.log(res);
-                }
-              })
-            }
+          wx.showModal({
+            title: '登陆',
+            content: '请先登录！',
           })
         }
       }
@@ -46,7 +45,7 @@ Page({
     // })
   },
 
-  getGymName: function(){
+  getGymName: function() {
     const that = this;
     wx.chooseLocation({
       success: function(res) {
@@ -57,10 +56,17 @@ Page({
     })
   },
 
-  toChooseModel: function(){
-    wx.redirectTo({
-      url: '../choosemodel/choosemodel?id=1'
-    })
+  toChooseModel: function() {
+    if(this.data.haveLogin){
+      wx.redirectTo({
+        url: '../choosemodel/choosemodel?id=1'
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '请先登录···',
+      })
+    }
   },
 
   /**

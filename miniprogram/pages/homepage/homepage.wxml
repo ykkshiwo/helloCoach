@@ -1,7 +1,8 @@
 <!--miniprogram/pages/homepage/homepage.wxml-->
 <view class="frame">
   <view class="frame-top-part">
-      <image bindtap="toChooseModel" class="do" src="./do.png"></image>
+    <image bindtap="toChooseModel" class="do" src="./do.png"></image>
+    <!-- <button open-type="getUserInfo" class="get-userinfo">hello</button> -->
   </view>
   <!-- <view class='test'></view> -->
   <!-- <image class="hello" src="./hellocoach1.png" mode='widthFix'></image> -->
@@ -10,6 +11,8 @@
     <text class="location" bindtap="getGymName">{{ whichGym }}</text>
   </view>
   <view class="user-avatar-url" bindtap="getInfoOfUser">
-    <open-data type="userAvatarUrl"></open-data>
+    <image wx:if="{{ haveLogin }}" src="{{ userImageUrl }}" class="user-image"></image>
+    <view wx:else class="please-login">登陆</view>
+    <button open-type="getUserInfo" class="get-userinfo"></button>
   </view>
 </view>

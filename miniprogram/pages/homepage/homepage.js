@@ -10,6 +10,10 @@ Page({
     whichGym: "Where are you?",
   },
 
+  login: function(){
+    console.log("用户登入···")
+  },
+
   getGymName: function(){
     const that = this;
     wx.chooseLocation({

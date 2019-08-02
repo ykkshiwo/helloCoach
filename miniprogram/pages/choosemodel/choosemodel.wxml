@@ -3,10 +3,10 @@
 <view class="item" id="model_1" bindtap="toIndex">model-1</view>
 <view class="item" id="model_2" bindtap="toIndex">model-2</view>
 <view class="item" id="model_3" bindtap="toIndex">model-3</view> -->
-<scroll-view class="scroll-view_H" scroll-x scroll-with-animation style="width: 100%;height: 500px" bindscroll="getSelectItem">
-  <block wx:for="{{proList}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
-    <view class="scroll_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'>
-    {{ item.content }}
-    </view>
-  </block>
+<scroll-view class="scroll-view_H" scroll-x scroll-with-animation style="width: 100%;height: 100vh" bindscroll="getSelectItem">
+    <block wx:for="{{proList}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
+      <view class="scroll_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' id="{{ 'model_' + item.index }}" bindtap='toIndex'>
+        {{ item.content }}
+      </view>
+    </block>
 </scroll-view>

@@ -2,17 +2,13 @@
 <view class="frame">
   <view class="frame-top-part">
     <image bindtap="toChooseModel" class="do" src="./do.png"></image>
-    <!-- <button open-type="getUserInfo" class="get-userinfo">hello</button> -->
   </view>
-  <!-- <view class='test'></view> -->
-  <!-- <image class="hello" src="./hellocoach1.png" mode='widthFix'></image> -->
-  <!-- <open-data class="nick-name" type="userNickName"></open-data> -->
   <view class="line">
     <text class="location" bindtap="getGymName">{{ whichGym }}</text>
   </view>
   <view class="user-avatar-url" bindtap="getInfoOfUser">
     <image wx:if="{{ haveLogin }}" src="{{ userImageUrl }}" class="user-image"></image>
-    <view wx:else class="please-login">登陆</view>
-    <button open-type="getUserInfo" class="get-userinfo"></button>
+    <!-- <view wx:else class="please-login">登陆</view> -->
+    <button wx:else open-type="getUserInfo" class="get-userinfo">登陆</button>
   </view>
 </view>

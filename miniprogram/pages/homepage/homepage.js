@@ -37,12 +37,6 @@ Page({
         }
       }
     })
-    // wx.cloud.callFunction({
-    //   name: 'getUserOpenId',
-    //   complete: res => {
-    //     console.log('callFunction test result: ', res)
-    //   }
-    // })
   },
 
   getGymName: function() {
@@ -58,7 +52,7 @@ Page({
 
   toChooseModel: function() {
     if(this.data.haveLogin){
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../choosemodel/choosemodel?id=1'
       })
     }else{

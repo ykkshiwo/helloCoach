@@ -133,6 +133,10 @@
   border: 2px solid #ffe852;
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .hello {
@@ -165,9 +169,12 @@
   background-color: gray;
   width: 100%;
   height: 100%;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   font-weight: bold;
+  font-size: 32rpx;
+  line-height: 36rpx;
+  color: white;
 }

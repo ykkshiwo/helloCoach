@@ -63,7 +63,7 @@ Page({
 
     for (var i = 0; i < picArray.length; i++) {
       var pic = picArray[i].data;
-
+      console.log(pic.locatInfo);
       var sWidth = pic.sInfo.sWidth; //源图像的宽度px
       var sHeight = pic.sInfo.sHeight; //源图像的高度px
       //源图像与背景放大图片的倍数

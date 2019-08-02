@@ -5,7 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
+    proList: [
+      {index: 1, select: false, content: "hello coach-1"},
+      {index: 2, select: false, content: "hello coach-2"},
+      {index: 3, select: false, content: "hello coach-3"}
+    ]
+  },
 
+  getSelectItem: function (e) {
+    console.log("选择模板在滚动···");
+    var that = this;
+    //每个商品的宽度
+    var itemWidth = e.detail.scrollWidth / that.data.proList.length;
+    //滚动宽度
+    var scrollLeft = e.detail.scrollLeft;
+    //通过Math.round方法对滚动大于一半的位置进行进位
+    var curIndex = Math.round(scrollLeft / itemWidth);
+    for (var i = 0, len = that.data.proList.length; i < len; ++i) {
+      that.data.proList[i].selected = false;
+    }
+    that.data.proList[curIndex].selected = true;
+    that.setData({
+      proList: that.data.proList,
+      // giftNo: this.data.proList[curIndex].id
+    });
   },
 
   toIndex: function(e){

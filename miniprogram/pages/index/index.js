@@ -11,11 +11,9 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    // inputShow: false, //初始状态input不显示
     picArray: [],
     textArray: [],
     temPathArray: [],
-    // hide: true,
     canvasHeight: '',
     canvasShow: true,
     canvasLeft: "750rpx",
@@ -24,7 +22,7 @@ Page({
     showWebPage: false,
     nowArrayTask: 0,
     needTask: 0,
-    model: 'model_1',
+    model: 'model_4',
     dingweiData: {
       msg: 'this is a template',
       time: '2016-09-15',

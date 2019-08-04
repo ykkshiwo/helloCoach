@@ -16,10 +16,13 @@
     <web-image-page-component bindselectWebImage='bindselectWebImage' from-background="{{ true }}"></web-image-page-component>
   </block>
 
+<view class="component-content">
   <!-- 以下部分为排版组件 -->
 
   <import src="./models.wxml" />
   <template is="{{ model }}" data="{{...dingweiData}}"/>
 
   <!-- ----------------- -->
+</view>
+
 </view>

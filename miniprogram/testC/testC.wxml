@@ -1,2 +1,2 @@
 <!--testC/testC.wxml-->
-<view style="color: yellow; position: fixed; top: 60px; left: 60px;">hello</view>
+<view class="hello">hello</view>

@@ -1,8 +1,8 @@
 {
   "cloud": true,
   "pages": [
-    "pages/homepage/homepage",
     "pages/index/index",
+    "pages/homepage/homepage",
     "pages/choosemodel/choosemodel"
   ],
   "window": {

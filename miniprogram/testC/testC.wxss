@@ -1,1 +1,9 @@
 /* testC/testC.wxss */
+.hello{
+  color: yellow; 
+  top: 60px; 
+  left: 60px;
+  border: 1px solid blueviolet;
+  width: 200rpx;
+  height: 100rpx;
+}

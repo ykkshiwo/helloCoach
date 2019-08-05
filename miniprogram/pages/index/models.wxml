@@ -27,8 +27,9 @@
 
 //模板_4
 <template name="model_4">
-  <view style="width:100%; height:100vh; display:flex; justify-content: center; flex-direction: column; align-items: center">
-    <testC></testC>
-    <testC></testC>
+  <view style="width:100%; height:100vh; display:flex; justify-content: space-around; flex-direction: column; align-items: center">
+    <testC id="test1"></testC>
+    <testC id="test2"></testC>
+    <testC id="test3"></testC>
   </view>
 </template>

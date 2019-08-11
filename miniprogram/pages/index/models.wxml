@@ -5,7 +5,7 @@
 
 //模板_2
 <template name="model_2">
-  <dingwei-component wx:if="{{ hide }}" id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src="/images/jianbian.jpg"></dingwei-component>
+  <dingwei-component wx:if="{{ hide }}" id="1" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="80rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
 
   <dingwei-component wx:if="{{ hide }}" id="2" binduserclickcomponent="userClickcomponentF" bindneeddraw="fromInputValue" this-top="460rpx" this-left="80rpx" this-width="600rpx" this-height="360rpx" input-show="{{ inputShow }}" is-text="{{ false }}" image-src=""></dingwei-component>
 

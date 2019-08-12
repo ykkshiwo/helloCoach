@@ -17,19 +17,38 @@
 }
 
 .scroll_item {
-  position: relative;
+  /* position: relative; */
   width: 84%;
   margin: 0 1%;
   left: -2%;
   display: inline-block;
   border-radius: 20rpx !important;
-  overflow: hidden;
+  /* overflow: hidden; */
   transform: scale(0.9);
   box-shadow: 0 0 10px #ccc;
-  vertical-align: top;
+  /* vertical-align: top; */
   top: 5%;
   height: 84%;
-  background-color: #fff;
+  /* background-color: #fff; */
+
+}
+
+.image-normal{
+  /* transform: scale(0.9); */
+  width: 100%;
+  height: 90%;
+  opacity: 0.1;
+  display: block;
+}
+
+.image-normal.selected{
+  transform: scale(1);
+}
+
+.big-frame{
+  width: 100%;
+  height: 90vh;
+  background-color: yellow;
 }
 
 .scroll_item:first-child {

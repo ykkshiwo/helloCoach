@@ -9,27 +9,32 @@ Page({
     proList: [{
         index: 1,
         selected: true,
-        content: "hello coach-1"
+        content: "hello coach-1",
+        imageUrl: "https://6865-hello-coach-1-3d05cc-1259373909.tcb.qcloud.la/c74ab63c28dcc387e842a08ad4ff9ac.jpg?sign=9acd45f1068430d8b183a91ec3407c29&t=1565621924",
       },
       {
         index: 2,
         selected: false,
-        content: "hello coach-2"
+        content: "hello coach-2",
+        imageUrl: "https://6865-hello-coach-1-3d05cc-1259373909.tcb.qcloud.la/d30e08edf6507505f88c81ca69f85ee.jpg?sign=3c016666ceb41d82b558f684b5418f01&t=1565622111",
       },
       {
         index: 3,
         selected: false,
-        content: "hello coach-3"
+        content: "hello coach-3",
+        imageUrl: "https://6865-hello-coach-1-3d05cc-1259373909.tcb.qcloud.la/fb3ec34135aad0ae270e798cfe13b5d.jpg?sign=3d7326853b4e442e716e2e7365a06276&t=1565622133",
       },
       {
         index: 4,
         selected: false,
-        content: "hello coach-4"
+        content: "hello coach-4",
+        imageUrl: "https://6865-hello-coach-1-3d05cc-1259373909.tcb.qcloud.la/jianbian.jpg?sign=9c88805948cac909e9fb4208a047651f&t=1565622160"
       },
       {
         index: 5,
         selected: false,
-        content: "hello coach-5"
+        content: "hello coach-5",
+        imageUrl: "https://6865-hello-coach-1-3d05cc-1259373909.tcb.qcloud.la/my-image.jpg?sign=a491661eab71530eb4e87329fbd7f830&t=1565622178",
       }
     ]
   },

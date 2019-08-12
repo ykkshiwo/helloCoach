@@ -19,6 +19,7 @@ App({
     this.globalData.screenHeightPx = res.windowHeight;
     this.globalData.screenWidthPx = res.windowWidth;
     console.log("设备像素比rpx: " + " 宽 " + res.windowWidth + " 高 " + res.windowHeight);
+    console.log("设备像素比rpx: " + " 宽 " + res.windowWidth / rpxTopx + " 高 " + res.windowHeight / rpxTopx);
   },
 
   globalData: {

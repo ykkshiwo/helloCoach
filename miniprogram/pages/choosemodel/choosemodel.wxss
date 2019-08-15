@@ -14,6 +14,7 @@
   background-color: yellowgreen;
   text-align: center;
   white-space: nowrap;
+
 }
 
 .scroll_item {
@@ -25,19 +26,21 @@
   border-radius: 20rpx !important;
   /* overflow: hidden; */
   transform: scale(0.9);
-  box-shadow: 0 0 10px #ccc;
+  /* box-shadow: 0 0 10px #ccc; */
   /* vertical-align: top; */
   top: 5%;
-  height: 84%;
+  height: 90%;
   /* background-color: #fff; */
+  border: solid 1px #ca414c;
 
 }
 
 .image-normal{
-  /* transform: scale(0.9); */
+  transform: scale(0.9);
   width: 100%;
   height: 90%;
-  opacity: 0.1;
+  /* opacity: 0.1; */
+  box-shadow: 0 0 10px yellow;
   display: block;
 }
 
